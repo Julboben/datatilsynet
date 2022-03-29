@@ -54,6 +54,9 @@ if (qOne = "true") {
 
 
 //NEW TRY! ONLY WORKS ON THE FIRST RADIO BUTTON - ALERTS
+
+
+// Den skal Anette fikse!!!
 /* const radioData = document.getElementsByName("datatilsynet");
 
 for (const i = 0, length = radioData.length; i < length; i++) {
@@ -67,7 +70,7 @@ function dotChangeNext() {
     // Prints value from input when pressed
     const aOne = document.querySelector('input[name="datatilsynet"]:checked').value;
     document.getElementById("a1").innerText = aOne;
-    alert(aOne);
+
 
 
     if (slide[8].classList.contains("form-row-active")) {
