@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="img/favicon.png">
     <link rel="stylesheet" href="css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,8 +13,6 @@
         href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
         rel="stylesheet">
     <title>Datatilsynet</title>
-    <script
-        type="text/javascript"> (function () { var css = document.createElement('link'); css.href = 'https://use.fontawesome.com/releases/v5.1.0/css/all.css'; css.rel = 'stylesheet'; css.type = 'text/css'; document.getElementsByTagName('head')[0].appendChild(css); })(); </script>
     <script src="https://kit.fontawesome.com/74a3c36122.js" crossorigin="anonymous"></script>
 </head>
 
@@ -22,17 +21,20 @@
     <header>
         <div class="container">
             <a href="/"><img class="img-brand" src="img/dat-logo.png" alt=""></a>
-            <nav>
+            <nav id="topnav" class="topnav">
                 <a class="hover-underline-animation" href="#">Hvad siger reglerne?</a>
                 <a class="hover-underline-animation" href="#">Borger</a>
                 <a class="hover-underline-animation" href="#">Afgørelser</a>
                 <a class="hover-underline-animation" href="#">Sikkerhedsbrud</a>
+                <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+                    <i class="fas fa-bars"></i>
+                  </a>
             </nav>
         </div>
     </header>
     <main>
         <!-- Cookie Modal -->
-        <div id="cookie-popup" class="modal cookie-popup">
+        <div id="cookie-popup" class="modal">
 
             <!-- Modal content -->
             <div class="modal-content">
@@ -47,10 +49,110 @@
                         at fungere.</p><a href="#">Om cookies</a>
                 </div>
                 <div class="modal-footer">
-                    <button class="btn btn-secondary close-popup" type="button" onclick="closeCookiePopup()">Kun
+                    <button class="btn btn-secondary" type="button" onclick="closeCookiePopup()">Kun
                         nødvendige</button>
-                    <button class="btn btn-primary close-popup" type="button" onclick="closeCookiePopup()">Accepter
+                    <button class="btn btn-primary" type="button" onclick="closeCookiePopup()">Accepter
                         alle</button>
+                </div>
+            </div>
+
+        </div>
+        <!-- Report Modal -->
+        <div id="report-popup" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <span class="close">&times;</span>
+                    <h2>Rapporter til Datatilsynet</h2>
+                </div>
+                <div class="modal-img img1"> <img src="img/datatilsynet_maalgruppe.svg" alt=""></div>
+                <div class="modal-body body1">
+                    <h2>Målgruppe</h2>
+                    <h3>Vi har valgt at arbejde med virksomheder, herunder specifikt webshops, i Danmark.</h3>
+                    <p>I Danmark har vi 321.494 aktive virksomheder med 2.276.102 ansatte.
+                        Der er 45.507 aktive koncerner med 899.681 ansatte.1
+                        En tredjedel af de danske virksomheder har webshop2
+
+                        Vores målgruppe består derfor af 96.448 virksomheder med webshops i Danmark.
+                    </p>
+                    <h3>Hvor stor er vores målgruppe målt i antal medarbejdere?</h3>
+                    <p>Vores målgruppe er en person der arbejder som dataansvarlig eller som databehandler i en
+                        virksomhed med webshop.
+                        Der vil være minimum én dataansvarlig eller behandler pr. virksomhed og dvs. at vores målgruppe
+                        målt i antal medarbejdere er det samme som antal af aktive virksomheder med webshobs i Danmark,
+                        altså 96.448 medarbejdere.
+                    </p>
+                    <h3>I hvilken afdeling i virksomheden skal vi finde vores målgruppe?</h3>
+                    <p>Vores dataansvarlige eller databehandler kan sidde i forskellige afdelinger af en virksomhed,
+                        afhængig af virksomhedens størrelse.
+                        Den typiske afdeling vil være IT-afdelingen.
+                    </p>
+                    <h3>KONKLUSION</h3>
+                    <p>Vi skal ud at ramme minimum 96.500 medarbejdere med vores spørgeskema og teste deres viden
+                        omkring Datatilsynet og GDPR. Vi skal målrette vores fokus mod IT-afdelingerne rundt om i de
+                        danske virksomheder med webshops.</p>
+                </div>
+                <div class="modal-img img2"> <img src="img/datatilsynet_projektledelse.svg" alt=""></div>
+                <div class="modal-body body2">
+                    <h2>Projektstyring</h2>
+                    <h3>Vi har valgt at arbejde med virksomheder, herunder specifikt webshops, i Danmark.</h3>
+                    <p>I Danmark har vi 321.494 aktive virksomheder med 2.276.102 ansatte.
+                        Der er 45.507 aktive koncerner med 899.681 ansatte.1
+                        En tredjedel af de danske virksomheder har webshop2
+
+                        Vores målgruppe består derfor af 96.448 virksomheder med webshops i Danmark.
+                    </p>
+                    <h3>Hvor stor er vores målgruppe målt i antal medarbejdere?</h3>
+                    <p>Vores målgruppe er en person der arbejder som dataansvarlig eller som databehandler i en
+                        virksomhed med webshop.
+                        Der vil være minimum én dataansvarlig eller behandler pr. virksomhed og dvs. at vores målgruppe
+                        målt i antal medarbejdere er det samme som antal af aktive virksomheder med webshobs i Danmark,
+                        altså 96.448 medarbejdere.
+                    </p>
+                    <h3>I hvilken afdeling i virksomheden skal vi finde vores målgruppe?</h3>
+                    <p>Vores dataansvarlige eller databehandler kan sidde i forskellige afdelinger af en virksomhed,
+                        afhængig af virksomhedens størrelse.
+                        Den typiske afdeling vil være IT-afdelingen.
+                    </p>
+                    <h3>KONKLUSION</h3>
+                    <p>Vi skal ud at ramme minimum 96.500 medarbejdere med vores spørgeskema og teste deres viden
+                        omkring Datatilsynet og GDPR. Vi skal målrette vores fokus mod IT-afdelingerne rundt om i de
+                        danske virksomheder med webshops.</p>
+                </div>
+                <div class="modal-img img3"> <img src="img/interessent-analyse.svg" alt=""></div>
+                <div class="modal-body body3">
+                    <h2>Projektstyring</h2>
+                    <h3>Vi har valgt at arbejde med virksomheder, herunder specifikt webshops, i Danmark.</h3>
+                    <p>I Danmark har vi 321.494 aktive virksomheder med 2.276.102 ansatte.
+                        Der er 45.507 aktive koncerner med 899.681 ansatte.1
+                        En tredjedel af de danske virksomheder har webshop2
+
+                        Vores målgruppe består derfor af 96.448 virksomheder med webshops i Danmark.
+                    </p>
+                    <h3>Hvor stor er vores målgruppe målt i antal medarbejdere?</h3>
+                    <p>Vores målgruppe er en person der arbejder som dataansvarlig eller som databehandler i en
+                        virksomhed med webshop.
+                        Der vil være minimum én dataansvarlig eller behandler pr. virksomhed og dvs. at vores målgruppe
+                        målt i antal medarbejdere er det samme som antal af aktive virksomheder med webshobs i Danmark,
+                        altså 96.448 medarbejdere.
+                    </p>
+                    <h3>I hvilken afdeling i virksomheden skal vi finde vores målgruppe?</h3>
+                    <p>Vores dataansvarlige eller databehandler kan sidde i forskellige afdelinger af en virksomhed,
+                        afhængig af virksomhedens størrelse.
+                        Den typiske afdeling vil være IT-afdelingen.
+                    </p>
+                    <h3>KONKLUSION</h3>
+                    <p>Vi skal ud at ramme minimum 96.500 medarbejdere med vores spørgeskema og teste deres viden
+                        omkring Datatilsynet og GDPR. Vi skal målrette vores fokus mod IT-afdelingerne rundt om i de
+                        danske virksomheder med webshops.</p>
+                </div>
+                <div class="modal-footer">
+                    <small><i>
+                            <ul>
+                                <li>1 (kilde: dst.dk, statistik fra 2019)</li>
+                                <li>2 Kilde:EUROSTAT (Hvor gode er danske virksomheder til e-handel? - DI Handel
+                                    (danskindustri.dk)</li>
+                            </ul>
+                        </i></small>
                 </div>
             </div>
 
@@ -93,10 +195,10 @@
                                 <p>Mange danskere ved ikke hvad Datatilsynet er for en enhed og hvad formål de tjener i
                                     det danske samfund. Derudover har Datatilsynet ikke gjort meget for at brande sig
                                     selv i offentligheden og har derfor ikke en profil som nogen kender meget til.</p>
-                                <p>Vi har derfor lavet en quiz, som har til formål at styrke virksomheders generelle
-                                    viden om Datatilsynet og dens virke. Quizzen er en multiple choice.
+                                <p>Vi har derfor lavet en multiple choice quiz, som har til formål at styrke virksomheders generelle
+                                    viden om Datatilsynet og dens virke. Så hvad venter du på? Tag quizzen og konkurrer med dine kolleger om at få flest mulige korrekte svar og den bedste tid!
                                 </p>
-                                <p>Så hvad venter du på? Tag quizzen og konkurrer med dine kolleger!</p>
+                                <p><i class="fas fa-exclamation-circle"></i> Tiden sættes i gang så snart du har trykket "start quizzen".</p>
                             </div>
                         </div>
                         <div class="row form-row" id="slide-1">
@@ -112,16 +214,16 @@
                                     tv-overvågningsloven.</p>
                                 <h3 class="question-title">Hvad er én af Datatilsynets primære missioner?</h3>
                                 <p><i>Vælg kun ét svar:</i></p>
-                                <input type="radio" id="datatilsynet1" name="datatilsynet" value="false">
+                                <input type="radio" id="datatilsynet1" name="datatilsynet" value="Forkert!">
                                 <label for="datatilsynet1"> Forsikring mod arbejdsløshed samt administrere offentlige
                                     love og regler på området</label><br>
-                                <input type="radio" id="datatilsynet2" name="datatilsynet" value="false">
+                                <input type="radio" id="datatilsynet2" name="datatilsynet" value="Forkert!">
                                 <label for="datatilsynet2"> Håndhæve Danmarks og Rigsfællesskabets militære
                                     suverænitet</label><br>
-                                <input type="radio" id="datatilsynet3" name="datatilsynet" value="true">
+                                <input type="radio" id="datatilsynet3" name="datatilsynet" value="Korrekt!">
                                 <label for="datatilsynet3"> Sætte aftryk på national datalovgivning og europæisk
                                     samarbejde</label><br>
-                                <input type="radio" id="datatilsynet4" name="datatilsynet" value="false">
+                                <input type="radio" id="datatilsynet4" name="datatilsynet" value="Forkert!">
                                 <label for="datatilsynet4"> Administre skattebetalinger, som landets borgere og
                                     virksomheder betaler til det offentlige</label>
                             </div>
@@ -202,10 +304,11 @@
                             </div>
                             <div class="col">
                                 <h2>Bøde og straf</h2>
-                                <p>SKRIV NOGET TEKST HER??
+                                <p>Datatilsynet kan ved alvorlige brud på databeskyttelsesreglerne politianmelde
+                                    dataansvarlige og indstille dem.
                                 </p>
-                                <h3 class="question-title">Hvad er straffen hvis man ikke overholder
-                                    databeskyttelsesretlige lovgivning?</h3>
+                                <h3 class="question-title">Hvad er straffen ved alvorlige brud af
+                                    databeskyttelsesreglerne?</h3>
                                 <p><i>Vælg kun ét svar:</i></p>
                                 <input type="radio" id="straf1" name="straf" value="false">
                                 <label for="straf1"> En direkte erstatning til den data beskyttede</label><br>
@@ -224,7 +327,7 @@
                                 <p>Forbrugeren kan altid gøre indsigelse mod behandling, fx en offentliggørelse, af
                                     oplysninger om dem.
                                 </p>
-                                <h3 class="question-title">Hvor hurtigt skal oplysninger slettes?</h3>
+                                <h3 class="question-title">Hvor hurtigt skal forbrugeroplysninger slettes?</h3>
                                 <p><i>Vælg kun ét svar:</i></p>
                                 <input type="radio" id="sletning1" name="sletning" value="false">
                                 <label for="sletning1"> Inden for 48 timer</label><br>
@@ -284,9 +387,9 @@
                             <div class="col">
                                 <h2>Resultat</h2>
                                 <h3>Men hvad er Datatilsynet primære opgaver?</h3>
-
+                                <p id="a1"></p>
                                 <h3>Men hvad står forkortelsen GDPR for?</h3>
-
+                                <p id="a2"></p>
                                 <button class="btn btn-primary" id="btn-tryagain" type="button"
                                     onclick="startQuiz()">Tag quizzen igen</button>
                             </div>
@@ -330,91 +433,16 @@
                 </div>
             </div>
         </section>
-        <!-- Report Modal -->
-        <div id="report-popup" class="modal report-popup">
-
-            <!-- Modal content -->
-            <div class="modal-content">
-                <div class="modal-header">
-                    <span class="close">&times;</span>
-                    <h2>Rapporter til Datatilsynet</h2>
-                </div>
-                <div class="modal-img1"> <img src="img/interessent-analyse.svg" alt=""></div>
-                <div class="modal-body1">
-                    <h2>Projektstyring</h2>
-                    <h3>Vi har valgt at arbejde med virksomheder, herunder specifikt webshops, i Danmark.</h3>
-                    <p>I Danmark har vi 321.494 aktive virksomheder med 2.276.102 ansatte.
-                        Der er 45.507 aktive koncerner med 899.681 ansatte.1
-                        En tredjedel af de danske virksomheder har webshop2
-
-                        Vores målgruppe består derfor af 96.448 virksomheder med webshops i Danmark.
-                    </p>
-                    <h3>Hvor stor er vores målgruppe målt i antal medarbejdere?</h3>
-                    <p>Vores målgruppe er en person der arbejder som dataansvarlig eller som databehandler i en
-                        virksomhed med webshop.
-                        Der vil være minimum én dataansvarlig eller behandler pr. virksomhed og dvs. at vores målgruppe
-                        målt i antal medarbejdere er det samme som antal af aktive virksomheder med webshobs i Danmark,
-                        altså 96.448 medarbejdere.
-                    </p>
-                    <h3>I hvilken afdeling i virksomheden skal vi finde vores målgruppe?</h3>
-                    <p>Vores dataansvarlige eller databehandler kan sidde i forskellige afdelinger af en virksomhed,
-                        afhængig af virksomhedens størrelse.
-                        Den typiske afdeling vil være IT-afdelingen.
-                    </p>
-                    <h3>KONKLUSION</h3>
-                    <p>Vi skal ud at ramme minimum 96.500 medarbejdere med vores spørgeskema og teste deres viden
-                        omkring Datatilsynet og GDPR. Vi skal målrette vores fokus mod IT-afdelingerne rundt om i de
-                        danske virksomheder med webshops.</p>
-                </div>
-                <div class="modal-img2"> <img src="img/interessent-analyse.svg" alt=""></div>
-                <div class="modal-body2">
-                    <h2>Projektstyring</h2>
-                    <h3>Vi har valgt at arbejde med virksomheder, herunder specifikt webshops, i Danmark.</h3>
-                    <p>I Danmark har vi 321.494 aktive virksomheder med 2.276.102 ansatte.
-                        Der er 45.507 aktive koncerner med 899.681 ansatte.1
-                        En tredjedel af de danske virksomheder har webshop2
-
-                        Vores målgruppe består derfor af 96.448 virksomheder med webshops i Danmark.
-                    </p>
-                    <h3>Hvor stor er vores målgruppe målt i antal medarbejdere?</h3>
-                    <p>Vores målgruppe er en person der arbejder som dataansvarlig eller som databehandler i en
-                        virksomhed med webshop.
-                        Der vil være minimum én dataansvarlig eller behandler pr. virksomhed og dvs. at vores målgruppe
-                        målt i antal medarbejdere er det samme som antal af aktive virksomheder med webshobs i Danmark,
-                        altså 96.448 medarbejdere.
-                    </p>
-                    <h3>I hvilken afdeling i virksomheden skal vi finde vores målgruppe?</h3>
-                    <p>Vores dataansvarlige eller databehandler kan sidde i forskellige afdelinger af en virksomhed,
-                        afhængig af virksomhedens størrelse.
-                        Den typiske afdeling vil være IT-afdelingen.
-                    </p>
-                    <h3>KONKLUSION</h3>
-                    <p>Vi skal ud at ramme minimum 96.500 medarbejdere med vores spørgeskema og teste deres viden
-                        omkring Datatilsynet og GDPR. Vi skal målrette vores fokus mod IT-afdelingerne rundt om i de
-                        danske virksomheder med webshops.</p>
-                </div>
-                <div class="modal-footer">
-                    <small><i>
-                            <ul>
-                                <li>1 (kilde: dst.dk, statistik fra 2019)</li>
-                                <li>2 Kilde:EUROSTAT (Hvor gode er danske virksomheder til e-handel? - DI Handel
-                                    (danskindustri.dk)</li>
-                            </ul>
-                        </i></small>
-                </div>
-            </div>
-
-        </div>
     </main>
     <footer>
         <div class="container">
             <p>Datatilsynet &copy; 2022</p>
             <div class="reports">
-                <a id="report-btn" href="#">Rapporter</a>
+                <a id="report-btn">Rapporter</a>
             </div>
         </div>
     </footer>
-    <script src="script.js"></script>
+    <script src="script.js" type="text/javascript"></script>
 </body>
 
 </html>

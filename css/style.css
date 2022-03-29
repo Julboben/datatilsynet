@@ -31,7 +31,7 @@ header {
 
 @media screen and (max-width: 992px) {
   header {
-    min-height: 140px;
+    min-height: 100px;
   }
 }
 
@@ -44,22 +44,45 @@ header .container {
 
 @media screen and (max-width: 992px) {
   header .container {
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
+    align-content: center;
   }
 }
 
-nav {
+.topnav {
   display: flex;
   justify-content: flex-end;
   gap: 20px;
   text-align: right;
+
+}
+
+.topnav .icon {
+  display: none;
+}
+
+.topnav a::after {
+  font-family: "Font Awesome 5 Free";
+  content: " \f078";
+  font-size: 12px;
 }
 
 @media screen and (max-width: 992px) {
-  nav {
+  .topnav {
     text-align: left;
-    justify-content: flex-start;
+  }
+
+  .topnav a {
+    display: none;
+  }
+
+  .topnav a::after {
+    content: "";
+  }
+
+  .topnav a.icon {
+    display: block;
+    float: right;
   }
 }
 
@@ -67,19 +90,13 @@ a {
   color: #C39C5B;
 }
 
-nav a {
+.topnav a {
   text-transform: uppercase;
   text-decoration: none;
   font-weight: 500;
   font-size: 14px;
   letter-spacing: .01rem;
   color: #13293B;
-}
-
-nav a::after {
-  font-family: "Font Awesome 5 Free";
-  content: " \f078";
-  font-size: 12px;
 }
 
 .hover-underline-animation {
@@ -109,8 +126,8 @@ header img.img-brand {
   max-width: 200px;
 }
 
-.cookie-popup img.img-brand-modal {
-  max-width: 300px;
+#cookie-popup img.img-brand-modal {
+  max-width: 80%;
 }
 
 footer {
@@ -128,7 +145,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h3.question-title::before {
-  content: "MEN! ";
+  font-family: "Font Awesome 5 Free";
+  content: "\f059  ";
 }
 
 p {
@@ -156,6 +174,10 @@ footer .reports {
 footer a {
   color: white;
   text-decoration: none;
+}
+
+#report-btn {
+  cursor: pointer;
 }
 
 #report-btn::before {
@@ -235,7 +257,7 @@ hr.step {
   background-color: #C39C5B;
   margin: 0;
   padding: 0;
-  width: 40px;
+  width: 3em;
 }
 
 .step-dot {
@@ -246,12 +268,31 @@ hr.step {
   display: inline-block;
 }
 
+
+@media screen and (max-width: 992px) {
+  hr.step {
+    width: 2em;
+  }
+}
+
 .dot-active {
   background-color: #13293B;
 }
 
 .form-section .wrapper {
   padding: 40px;
+}
+
+@media screen and (max-width: 992px) {
+  .form-section .wrapper {
+    padding: 20px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .form-section .wrapper {
+    padding: 0px;
+  }
 }
 
 .form-section .row {
@@ -368,7 +409,7 @@ hr.step {
 /* Cookie popup - Modal */
 /* The Modal (background) */
 #cookie-popup {
-  /* display: none; */
+  display: block;
   /* Hidden by default */
   position: fixed;
   /* Stay in place */
@@ -389,7 +430,7 @@ hr.step {
 }
 
 /* Modal Content/Box */
-.cookie-popup .modal-content {
+#cookie-popup .modal-content {
   background-color: #f5f5f4;
   margin: 15% auto;
   /* 15% from the top and centered */
@@ -399,27 +440,27 @@ hr.step {
 }
 
 @media screen and (max-width: 992px) {
-  .cookie-popup .modal-content {
+  #cookie-popup .modal-content {
     width: 60%;
   }
 }
 
 @media screen and (max-width: 768px) {
-  .cookie-popup .modal-content {
+  #cookie-popup .modal-content {
     width: 90%;
   }
 }
 
-.cookie-popup .modal-header {
+#cookie-popup .modal-header {
   padding: 20px 40px;
   color: white;
 }
 
-.cookie-popup .modal-body {
+#cookie-popup .modal-body {
   padding: 20px 40px;
 }
 
-.cookie-popup .modal-footer {
+#cookie-popup .modal-footer {
   display: flex;
   justify-content: space-around;
   padding: 36px;
@@ -439,8 +480,7 @@ hr.step {
   font-weight: bold;
 }
 
-.close:hover,
-.close:focus {
+.close:hover, .close:focus {
   color: black;
   text-decoration: none;
   cursor: pointer;
@@ -449,59 +489,86 @@ hr.step {
 /* Report Modal */
 /* The Modal (background) */
 #report-popup {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
+  display: none;
+  position: fixed;
+  z-index: 1;
   left: 0;
   top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.4);
 }
 
 /* Modal Content/Box */
-.report-popup .modal-content {
+#report-popup .modal-content {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-areas:
-  "header header header"
-  "img1 body1 body1"
-  "img2 body2 body2"
-  "footer footer footer" ;
+    "header header header"
+    "img1 body1 body1"
+    "img2 body2 body2"
+    "img3 body3 body3"
+    "footer footer footer";
   gap: 40px;
   background-color: #fefefe;
-  margin: 5% auto; /* 15% from the top and centered */
+  margin: 5% auto;
   padding: 40px;
-  width: 80%; /* Could be more or less, depending on screen size */
+  width: 80%;
+  border-radius: 10px;
 }
 
-.report-popup .modal-header {
+@media screen and (max-width: 992px) {
+  #report-popup .modal-content {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "header"
+      "img1"
+      "body1"
+      "img2"
+      "body2"
+      "img3"
+      "body3"
+      "footer";
+  }
+}
+
+#report-popup .modal-header {
   position: relative;
+  text-align: center;
   grid-area: header;
 }
 
-.report-popup .modal-img1 {
+#report-popup .img1 {
   grid-area: img1;
 }
 
-.report-popup .modal-body1 {
+#report-popup .body1 {
   grid-area: body1;
 }
-.report-popup .modal-img2 {
+
+#report-popup .img2 {
   grid-area: img2;
 }
 
-.report-popup .modal-body2 {
+#report-popup .body2 {
   grid-area: body2;
+}
+
+#report-popup .img3 {
+  grid-area: img3;
+}
+
+#report-popup .body3 {
+  grid-area: body3;
 }
 
 .modal-img img {
   width: 100%;
 }
 
-.report-popup .modal-footer {
+#report-popup .modal-footer {
   grid-area: footer;
 }
 

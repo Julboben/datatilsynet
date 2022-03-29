@@ -40,7 +40,36 @@ function startQuiz() {
 
 }
 
+// THIS NEEDS TO WORK!
+/*
+const true = 
+
+const qOne = document.querySelector('input[name="datatilsynet"]:checked').value;
+if (qOne = "true") {
+    document.getElementById("q1").innerText = "Korrekt svaret!";
+} if (qOne = "false") {
+    document.getElementById("q1").style.color = "red";
+    document.getElementById("q1").innerText = "Forkert svaret!";
+} */
+
+
+//NEW TRY! ONLY WORKS ON THE FIRST RADIO BUTTON - ALERTS
+/* const radioData = document.getElementsByName("datatilsynet");
+
+for (const i = 0, length = radioData.length; i < length; i++) {
+    if (radioData[i].checked) {
+        alert(radioData[i].value);
+        break;
+    }
+} */
+
 function dotChangeNext() {
+    // Prints value from input when pressed
+    const aOne = document.querySelector('input[name="datatilsynet"]:checked').value;
+    document.getElementById("a1").innerText = aOne;
+    alert(aOne);
+
+
     if (slide[8].classList.contains("form-row-active")) {
         slide[8].classList.toggle("form-row-active");
         slide[9].classList.toggle("form-row-active");
@@ -131,11 +160,11 @@ function closeCookiePopup() {
 
 // Get the modal
 const reportModal = document.getElementById("report-popup");
-const reportBtn = document.getElementById("report-btn");
+const reportOpenBtn = document.getElementById("report-btn");
 const span = document.getElementsByClassName("close")[0];
 
 // When the user clicks on the button, open the modal 
-reportBtn.onclick = function () {
+reportOpenBtn.onclick = function () {
     reportModal.style.display = "block";
 }
 
@@ -144,7 +173,17 @@ span.onclick = function () {
 }
 
 window.onclick = function (event) {
-    if (event.target == modal) {
+    if (event.target == reportModal) {
         reportModal.style.display = "none";
+    }
+}
+
+/* Toggle between adding and removing the "responsive" class to topnav when the user clicks on the icon */
+function myFunction() {
+    var x = document.getElementById("myTopnav");
+    if (x.className === "topnav") {
+        x.className += " responsive";
+    } else {
+        x.className = "topnav";
     }
 }
