@@ -1,4 +1,4 @@
-//Anette og Julians Seje Quiz
+//Anette og Julians Seje Quiz (og Anders)
 
 //Dots
 const stepBtns = document.getElementById("step-btn");
