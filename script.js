@@ -1,4 +1,4 @@
-//Anettes og Julians Quiz
+//Quiz
 
 //Dots
 const stepBtns = document.getElementById("step-btn");
