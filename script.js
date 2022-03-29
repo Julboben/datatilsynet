@@ -1,4 +1,4 @@
-//Quiz
+//Anette, Maya og Julians Seje Quiz
 
 //Dots
 const stepBtns = document.getElementById("step-btn");
