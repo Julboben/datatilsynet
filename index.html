@@ -26,9 +26,9 @@
                 <a class="hover-underline-animation" href="#">Borger</a>
                 <a class="hover-underline-animation" href="#">Afgørelser</a>
                 <a class="hover-underline-animation" href="#">Sikkerhedsbrud</a>
-                <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+                <a href="javascript:void(0);" class="icon" onclick="openNavBurger()">
                     <i class="fas fa-bars"></i>
-                  </a>
+                </a>
             </nav>
         </div>
     </header>
@@ -191,14 +191,17 @@
                                 <img src="img/datatilsynet_0.svg" class="img-fluid" alt="">
                             </div>
                             <div class="col">
-                                <h2>Velkommen</h2>
+                                <h2>Velkommen til dataquizzen</h2>
                                 <p>Mange danskere ved ikke hvad Datatilsynet er for en enhed og hvad formål de tjener i
                                     det danske samfund. Derudover har Datatilsynet ikke gjort meget for at brande sig
                                     selv i offentligheden og har derfor ikke en profil som nogen kender meget til.</p>
-                                <p>Vi har derfor lavet en multiple choice quiz, som har til formål at styrke virksomheders generelle
-                                    viden om Datatilsynet og dens virke. Så hvad venter du på? Tag quizzen og konkurrer med dine kolleger om at få flest mulige korrekte svar og den bedste tid!
+                                <p>Vi har derfor lavet en multiple choice quiz, som har til formål at styrke
+                                    virksomheders generelle
+                                    viden om Datatilsynet og dens virke. Så hvad venter du på? Tag quizzen og konkurrer
+                                    med dine kolleger om at få flest mulige korrekte svar og den bedste tid!
                                 </p>
-                                <p><i class="fas fa-exclamation-circle"></i> Tiden sættes i gang så snart du har trykket "start quizzen".</p>
+                                <p><i class="fas fa-exclamation-circle"></i> Tiden sættes i gang så snart du har trykket
+                                    "start quizzen".</p>
                             </div>
                         </div>
                         <div class="row form-row" id="slide-1">
@@ -214,16 +217,16 @@
                                     tv-overvågningsloven.</p>
                                 <h3 class="question-title">Hvad er én af Datatilsynets primære missioner?</h3>
                                 <p><i>Vælg kun ét svar:</i></p>
-                                <input type="radio" id="datatilsynet1" name="datatilsynet" value="Forkert!">
-                                <label for="datatilsynet1"> Forsikring mod arbejdsløshed samt administrere offentlige
+                                <input type="radio" id="datatilsynet1" name="datatilsynet" value="false"> <label
+                                    for="datatilsynet1"> Forsikring mod arbejdsløshed samt administrere offentlige
                                     love og regler på området</label><br>
-                                <input type="radio" id="datatilsynet2" name="datatilsynet" value="Forkert!">
+                                <input type="radio" id="datatilsynet2" name="datatilsynet" value="false">
                                 <label for="datatilsynet2"> Håndhæve Danmarks og Rigsfællesskabets militære
                                     suverænitet</label><br>
-                                <input type="radio" id="datatilsynet3" name="datatilsynet" value="Korrekt!">
+                                <input type="radio" id="datatilsynet3" name="datatilsynet" value="true">
                                 <label for="datatilsynet3"> Sætte aftryk på national datalovgivning og europæisk
                                     samarbejde</label><br>
-                                <input type="radio" id="datatilsynet4" name="datatilsynet" value="Forkert!">
+                                <input type="radio" id="datatilsynet4" name="datatilsynet" value="false">
                                 <label for="datatilsynet4"> Administre skattebetalinger, som landets borgere og
                                     virksomheder betaler til det offentlige</label>
                             </div>
@@ -383,15 +386,29 @@
                                     det ikke er dit ansvar</label><br>
                             </div>
                         </div>
-                        <div class="row form-row" id="slide-9">
+                        <div class="row row-cols-2 form-row" id="slide-9">
+                            <div><h2>Resultat</h2><i class="fas fa-flag-checkered fa-4x"></i>                                <h3>Din tid er</h3>
+                                <p id="timeDisplay"></p></div>
                             <div class="col">
-                                <h2>Resultat</h2>
-                                <h3>Men hvad er Datatilsynet primære opgaver?</h3>
-                                <p id="a1"></p>
-                                <h3>Men hvad står forkortelsen GDPR for?</h3>
-                                <p id="a2"></p>
-                                <button class="btn btn-primary" id="btn-tryagain" type="button"
-                                    onclick="restartQuiz()">Tag quizzen igen</button>
+                                <h3 class="question-title">Hvad er Datatilsynet primære opgaver?</h3>
+                                <p>Du har svaret: <span class="checkanswer">Du mangler at svare!</span></p>
+                                <h3 class="question-title">Hvad står forkortelsen GDPR for?</h3>
+                                <p>Du har svaret: <span class="checkanswer">Du mangler at svare!</span></p>
+                                <h3 class="question-title">Hvem bør den dataansvarlige i en virksomhed altid være?</h3>
+                                <p>Du har svaret: <span class="checkanswer">Du mangler at svare!</span></p>
+                                <h3 class="question-title">Hvad er “Best practise” i indsamling af cookiesamtykke?</h3>
+                                <p>Du har svaret: <span class="checkanswer">Du mangler at svare!</span></p>
+                            </div>
+                            <div class="col">
+                                <h3 class="question-title">Hvad er straffen ved alvorlige brud af
+                                    databeskyttelsesreglerne?</h3>
+                                    <p>Du har svaret: <span class="checkanswer">Du mangler at svare!</span></p>
+                                <h3 class="question-title">Hvor hurtigt skal forbrugeroplysninger slettes?</h3>
+                                <p>Du har svaret: <span class="checkanswer">Du mangler at svare!</span></p>
+                                <h3 class="question-title">Hvornår betragtes et billede som en personoplysning?</h3>
+                                <p>Du har svaret: <span class="checkanswer">Du mangler at svare!</span></p>
+                                <h3 class="question-title">Hvordan skal du forholde dig til en klage?</h3>
+                                <p>Du har svaret: <span class="checkanswer">Du mangler at svare!</span></p>
                             </div>
                         </div>
                         <div class="row form-row" id="slide-10">
@@ -424,11 +441,13 @@
                 <div class="all-buttons">
                     <button class="btn btn-primary" id="btn-start" type="button" onclick="startQuiz()">Start
                         quizzen</button>
+                    <button class="btn btn-primary" id="btn-tryagain" type="button" onclick="restartQuiz()">Tag quizzen
+                        igen</button>
                     <div id="step-btn">
                         <button class="btn btn-primary btn-inactive" id="btn-back" type="button"
-                            onclick="dotChangeBack()">Forrige</button>
+                            onclick="navigateBackward()">Forrige</button>
                         <button class="btn btn-primary" id="btn-next" type="button"
-                            onclick="dotChangeNext()">Næste</button>
+                            onclick="navigateForward()">Næste</button>
                     </div>
                 </div>
             </div>
