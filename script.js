@@ -1,4 +1,4 @@
-//Anette og Julians Seje Quiz (og mest Anders)
+//Anette og Julians Seje Quiz (og lidt Anders)
 
 //Dots
 const stepBtns = document.getElementById("step-btn");
@@ -14,6 +14,7 @@ const nextBtn = document.getElementById("btn-next");
 
 
 let activeSlideNumber = 0;
+let hasTimerBeenStarted = false;
 
 function startQuiz() {
     activeSlideNumber = 0;
@@ -21,16 +22,22 @@ function startQuiz() {
 
     startBtn.style.display = "none";
     stepBtns.style.display = "flex";
+
     //Starts timer
     startTimer()
 }
 
 // Timer as function
 function startTimer() {
+    if (hasTimerBeenStarted) {
+        return;
+    }
+
     var minutesLabel = document.getElementById("minutes");
     var secondsLabel = document.getElementById("seconds");
     var totalSeconds = 0;
     setInterval(setTime, 1000);
+    hasTimerBeenStarted = true;
 
     function setTime() {
         ++totalSeconds;
@@ -97,15 +104,6 @@ function navigateBackward() {
     showActiveSlide(false);
 }
 
-//Not necessary since btn now activates navigate<>
-/* function dotChangeNext() {
-    navigateForward();
-}
-
-function dotChangeBack() {
-    navigateBackward();
-} */
-
 function showActiveSlide(isMoveForward) {
     if (isMoveForward) {
         // Disable previous slide and enable active slide
@@ -114,9 +112,9 @@ function showActiveSlide(isMoveForward) {
 
         if (activeSlideNumber == 2) {
             backBtn.classList.toggle("btn-inactive");
-        } else if (activeSlideNumber == 8) {
+        } else if (activeSlideNumber == (slide.length - 3)) {
             nextBtn.innerText = "Afslut quizzen";
-        } else if (activeSlideNumber == 9) {
+        } else if (activeSlideNumber == (slide.length - 2)) {
             stepBtns.style.display = "none";
             againBtn.style.display = "block";
 
@@ -128,28 +126,22 @@ function showActiveSlide(isMoveForward) {
             }
 
             const checkAnswer = document.getElementsByClassName("checkanswer");
+            let correctAnswers = 0;
+            let incorrectAnswers = 0;
             for (let i = 0; i < checkAnswer.length; i++) {
                 checkAnswer[i].innerHTML = radioButtons[i].value;
-                
-                // Hvorfor virker denne ikke?
-/*                 if (checkAnswer[i].innerHTML = "true") {
+
+                // Hvorfor virker denne ikke? Det gør det nu!!
+                if (checkAnswer[i].innerHTML == "true") {
                     checkAnswer[i].innerHTML = "Korrekt!";
+                    correctAnswers++;
                 } else {
                     checkAnswer[i].innerHTML = "Forkert!";
-                } */
+                    incorrectAnswers++;
+                }
             }
-
-            //OLD solution
-/*             checkAnswer[0].innerHTML = radioButtons[0].value;
-            checkAnswer[1].innerHTML = radioButtons[1].value;
-            checkAnswer[2].innerHTML = radioButtons[2].value;
-            checkAnswer[3].innerHTML = radioButtons[3].value;
-            checkAnswer[4].innerHTML = radioButtons[4].value;
-            checkAnswer[5].innerHTML = radioButtons[5].value;
-            checkAnswer[6].innerHTML = radioButtons[6].value;
-            checkAnswer[7].innerHTML = radioButtons[7].value; */
-
-
+            console.log('Du havde ' + correctAnswers + ' korrekte svar!!' + (correctAnswers > 5 ? ' Godt gået!!' : ''));
+            console.log('... og ' + incorrectAnswers + ' forkerte svar!!' + (incorrectAnswers > 5 ? ' ØV!!' : ''));
         }
 
         // Only update dots on slide 1-8
