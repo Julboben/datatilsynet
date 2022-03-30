@@ -1,7 +1,6 @@
 //Anette og Julians Seje Quiz (og Anders)
 
 //Dots
-const maxDots = 8;
 const stepBtns = document.getElementById("step-btn");
 
 const dot = document.getElementsByClassName("step-dot");
@@ -50,7 +49,7 @@ function restartQuiz() {
   // Reset slides
   slide[activeSlideNumber].classList.toggle("form-row-active");
   slide[0].classList.toggle("form-row-active");
-  
+
   // Reset buttons
   nextBtn.innerText = "Næste";
   backBtn.classList.toggle("btn-inactive");
@@ -92,7 +91,7 @@ function navigateBackward() {
 
 function dotChangeNext() {
   navigateForward();
-  
+
   // Prints value from input when pressed
   //const aOne = document.querySelector('input[name="datatilsynet"]:checked').value;
   //console.log(aOne);
@@ -123,7 +122,6 @@ function showActiveSlide(isMoveForward) {
       dot[activeSlideNumber - 1].classList.toggle("dot-active");
     }
   } else {
-    console.log("Backward to slide " + activeSlideNumber);
     // Disable previous slide and enable active slide
     slide[activeSlideNumber].classList.toggle("form-row-active");
     slide[activeSlideNumber + 1].classList.toggle("form-row-active");
