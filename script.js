@@ -11,6 +11,8 @@ const startBtn = document.getElementById("btn-start");
 const backBtn = document.getElementById("btn-back");
 const nextBtn = document.getElementById("btn-next");
 
+var activeSlideNumber = 0;
+
 function startQuiz() {
     slide[0].classList.remove("form-row-active");
     slide[1].classList.add("form-row-active");
@@ -63,11 +65,26 @@ for (const i = 0, length = radioData.length; i < length; i++) {
     }
 } */
 
+function moveForward() {
+    activeSlideNumber++;
+    //showActiveSlide();
+}
+
+function moveBackward() {
+    activeSlideNumber--;
+   //showActiveSlide();
+}
+
 function dotChangeNext() {
+    moveForward();
+    console.log('Slide nr.' + activeSlideNumber);
+    //return;
+
     // Prints value from input when pressed
-    const aOne = document.querySelector('input[name="datatilsynet"]:checked').value;
-    document.getElementById("a1").innerText = aOne;
-    alert(aOne);
+    //const aOne = document.querySelector('input[name="datatilsynet"]:checked').value;
+    //console.log(aOne);
+    //document.getElementById("a1").innerText = aOne;
+    //alert(aOne);
 
 
     if (slide[8].classList.contains("form-row-active")) {
@@ -116,10 +133,14 @@ function dotChangeNext() {
 }
 
 function dotChangeBack() {
+    moveBackward();
+    console.log(activeSlideNumber);
+   //return;
+    
     // Type ! in front of element to do the opposite. Does NOT contain
     if (dotTwo.classList.contains("dot-active")) {
         backBtn.classList.toggle("btn-inactive");
-        dotTwo.classList.toggle("dot-active");
+        dotTwo.classList.toggle("dot-active"); 
         slideOne.classList.toggle("form-row-active");
     }
     if (!dotThree.classList.contains("dot-active")) {
@@ -138,6 +159,22 @@ function dotChangeBack() {
     if (dotSix.classList.contains("dot-active")) {
         dotSix.classList.remove("dot-active");
     }
+}
+
+function showActiveSlide() {
+    switch(activeSlideNumber) {
+        case 0:
+            //backBtn.classList.remove("btn-active");
+            backBtn.classList.add("btn-inactive");
+          break;
+        case 1:
+            console.log('Back button is now active');
+            backBtn.classList.remove("btn-inactive");
+            //backBtn.classList.add("btn-active");
+          break;
+        default:
+          // code block
+      } 
 }
 
 //Info boks popup
