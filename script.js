@@ -26,8 +26,8 @@ function startQuiz() {
     startBtn.style.display = "none";
     stepBtns.style.display = "flex";
 
-    //Starts timer
-    startTimer()
+    //Starts timer - removed
+    //startTimer()
 }
 
 // Timer as function
