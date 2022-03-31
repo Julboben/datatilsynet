@@ -182,7 +182,7 @@ footer a {
 
 #report-btn::before {
   font-family: "Font Awesome 5 Free";
-  content: "\f201  ";
+  content: "\f15c  ";
 }
 
 .container {
@@ -321,10 +321,38 @@ hr.step {
 }
 
 .row.row-cols-2 {
-  grid-template-columns: 1fr 3fr 3fr;
+  grid-template-columns: repeat(2 , 1fr);
   grid-template-rows: auto;
   gap: 20px;
 }
+
+@media screen and (max-width: 576px) {
+  .row.row-cols-2 {
+    grid-template-columns: 1fr;
+
+  }
+}
+
+.full-col {
+  grid-column: 1/3;
+  display: grid;
+  align-items: center;
+  grid-template-columns: 1fr 5fr;
+  grid-template-rows: auto;
+}
+
+.full-col h2{
+  grid-column: 1/3;
+}
+
+@media screen and (max-width: 576px) {
+  .full-col, .full-col h2 {
+    grid-column: auto;
+    grid-template-columns: 1fr;
+  }
+  
+}
+
 
 @media screen and (max-width: 576px) {
   .form-section .row {
@@ -523,6 +551,7 @@ hr.step {
     "img1 body1 body1"
     "img2 body2 body2"
     "img3 body3 body3"
+    "img4 body4 body4"
     "footer footer footer";
   gap: 40px;
   background-color: #fefefe;
@@ -543,6 +572,8 @@ hr.step {
       "body2"
       "img3"
       "body3"
+      "img4"
+      "body4"
       "footer";
   }
 }
@@ -581,6 +612,13 @@ hr.step {
 
 #report-popup .body3 {
   grid-area: body3;
+}
+#report-popup .img4 {
+  grid-area: img4;
+}
+
+#report-popup .body4 {
+  grid-area: body4;
 }
 
 .modal-img img {
@@ -638,4 +676,21 @@ input {
 
 #btn-tryagain {
   display: none;
+}
+
+#thumbsUpImg, #thumbsDownImg {
+  display: none;
+}
+
+#totalAnswerCount {
+  font-size: 18px;
+  padding-left: 10px;
+}
+
+
+@media screen and (max-width: 576px) {
+  #totalAnswerCount {
+    padding-left: 0px;
+    text-align: center;
+  }
 }

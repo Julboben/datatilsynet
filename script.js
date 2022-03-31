@@ -64,6 +64,10 @@ function restartQuiz() {
     slide[activeSlideNumber].classList.toggle("form-row-active");
     slide[0].classList.toggle("form-row-active");
 
+    //Reset thumbImg
+    thumsbUpImg.style.display = "none";
+    thumsDownImg.style.display = "none";
+
     // Reset buttons
     nextBtn.innerText = "Næste";
     backBtn.classList.toggle("btn-inactive");
@@ -106,11 +110,12 @@ function showActiveSlide(isMoveForward) {
             const checkAnswer = document.getElementsByClassName("checkanswer");
             let correctAnswers = 0;
             let incorrectAnswers = 0;
-            const finalAnswerCount = document.getElementById("finalAnswerCount");
+            const totalAnswerCount = document.getElementById("totalAnswerCount");
+            const thumsbUpImg = document.getElementById("thumbsUpImg");
+            const thumbsDownImg = document.getElementById("thumbsDownImg");
             for (let i = 0; i < checkAnswer.length; i++) {
                 checkAnswer[i].innerHTML = radioButtons[i].value;
 
-                // Hvorfor virker denne ikke? Det gør det nu!!
                 if (checkAnswer[i].innerHTML == "true") {
                     checkAnswer[i].innerHTML = "Korrekt!";
                     correctAnswers++;
@@ -119,9 +124,11 @@ function showActiveSlide(isMoveForward) {
                     incorrectAnswers++;
                 }
             }
-            finalAnswerCount.innerHTML = "Du har " + correctAnswers + " korrekte svar!!" + (correctAnswers > 5 ? " Godt gået!!" : "");
+            totalAnswerCount.innerHTML = "Du har " + correctAnswers + (correctAnswers < 2 ? " korrekt svar!" : " korrekte svar!") + (correctAnswers > 5 ? " Godt gået! Du kan din datalovgivning!" : " Der skal vidst læses lidt op på datalovgivning!");
             if (correctAnswers > 5) {
-                
+                thumsbUpImg.style.display = "block";
+            } else {
+                thumbsDownImg.style.display = "block";
             }
             console.log('Du havde ' + correctAnswers + ' korrekte svar!!' + (correctAnswers > 5 ? ' Godt gået!!' : ''));
             console.log('... og ' + incorrectAnswers + ' forkerte svar!!' + (incorrectAnswers > 5 ? ' ØV!!' : ''));
