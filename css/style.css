@@ -220,6 +220,12 @@ section.form-section .container h1 {
   padding: 10px 0px;
 }
 
+@media screen and (max-width: 576px) {
+  .all-buttons {
+    padding-top: 50px;
+  }
+}
+
 
 #step-btn {
   align-items: center;
