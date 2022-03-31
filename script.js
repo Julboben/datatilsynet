@@ -1,4 +1,4 @@
-//Anette og Julians Seje Quiz (og lidt Anders)
+//Anette, Maya og Julians Seje Quiz (og lidt Anders)
 
 //Dots
 const stepBtns = document.getElementById("step-btn");
@@ -12,6 +12,9 @@ const againBtn = document.getElementById("btn-tryagain");
 const backBtn = document.getElementById("btn-back");
 const nextBtn = document.getElementById("btn-next");
 
+//Img
+const thumbsbUpImg = document.getElementById("thumbsUpImg");
+const thumbsDownImg = document.getElementById("thumbsDownImg");
 
 let activeSlideNumber = 0;
 let hasTimerBeenStarted = false;
@@ -65,8 +68,8 @@ function restartQuiz() {
     slide[0].classList.toggle("form-row-active");
 
     //Reset thumbImg
-    thumsbUpImg.style.display = "none";
-    thumsDownImg.style.display = "none";
+    thumbsbUpImg.style.display = "none";
+    thumbsDownImg.style.display = "none";
 
     // Reset buttons
     nextBtn.innerText = "Næste";
@@ -111,8 +114,7 @@ function showActiveSlide(isMoveForward) {
             let correctAnswers = 0;
             let incorrectAnswers = 0;
             const totalAnswerCount = document.getElementById("totalAnswerCount");
-            const thumsbUpImg = document.getElementById("thumbsUpImg");
-            const thumbsDownImg = document.getElementById("thumbsDownImg");
+
             for (let i = 0; i < checkAnswer.length; i++) {
                 checkAnswer[i].innerHTML = radioButtons[i].value;
 
