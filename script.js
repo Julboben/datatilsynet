@@ -72,28 +72,6 @@ function restartQuiz() {
     startQuiz();
 }
 
-
-
-// THIS NEEDS TO WORK!
-/*
-const qOne = document.querySelector('input[name="datatilsynet"]:checked').value;
-if (qOne = "true") {
-    document.getElementById("q1").innerText = "Korrekt svaret!";
-} if (qOne = "false") {
-    document.getElementById("q1").style.color = "red";
-    document.getElementById("q1").innerText = "Forkert svaret!";
-} */
-
-//NEW TRY! ONLY WORKS ON THE FIRST RADIO BUTTON - ALERTS
-/* const radioData = document.getElementsByName("datatilsynet");
-
-for (const i = 0, length = radioData.length; i < length; i++) {
-    if (radioData[i].checked) {
-        alert(radioData[i].value);
-        break;
-    }
-} */
-
 function navigateForward() {
     activeSlideNumber++;
     showActiveSlide(true);
@@ -112,9 +90,9 @@ function showActiveSlide(isMoveForward) {
 
         if (activeSlideNumber == 2) {
             backBtn.classList.toggle("btn-inactive");
-        } else if (activeSlideNumber == (slide.length - 3)) {
-            nextBtn.innerText = "Afslut quizzen";
         } else if (activeSlideNumber == (slide.length - 2)) {
+            nextBtn.innerText = "Afslut quizzen";
+        } else if (activeSlideNumber == (slide.length - 1)) {
             stepBtns.style.display = "none";
             againBtn.style.display = "block";
 
@@ -128,6 +106,7 @@ function showActiveSlide(isMoveForward) {
             const checkAnswer = document.getElementsByClassName("checkanswer");
             let correctAnswers = 0;
             let incorrectAnswers = 0;
+            const finalAnswerCount = document.getElementById("finalAnswerCount");
             for (let i = 0; i < checkAnswer.length; i++) {
                 checkAnswer[i].innerHTML = radioButtons[i].value;
 
@@ -139,6 +118,10 @@ function showActiveSlide(isMoveForward) {
                     checkAnswer[i].innerHTML = "Forkert!";
                     incorrectAnswers++;
                 }
+            }
+            finalAnswerCount.innerHTML = "Du har " + correctAnswers + " korrekte svar!!" + (correctAnswers > 5 ? " Godt gået!!" : "");
+            if (correctAnswers > 5) {
+                
             }
             console.log('Du havde ' + correctAnswers + ' korrekte svar!!' + (correctAnswers > 5 ? ' Godt gået!!' : ''));
             console.log('... og ' + incorrectAnswers + ' forkerte svar!!' + (incorrectAnswers > 5 ? ' ØV!!' : ''));
