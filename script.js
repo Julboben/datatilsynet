@@ -128,7 +128,7 @@ function showActiveSlide(isMoveForward) {
             }
             totalAnswerCount.innerHTML = "Du har " + correctAnswers + (correctAnswers < 2 ? " korrekt svar!" : " korrekte svar!") + (correctAnswers > 5 ? " Godt gået! Du kan din datalovgivning!" : " Der skal vidst læses lidt op på datalovgivning!");
             if (correctAnswers > 5) {
-                thumsbUpImg.style.display = "block";
+                thumbsbUpImg.style.display = "block";
             } else {
                 thumbsDownImg.style.display = "block";
             }
