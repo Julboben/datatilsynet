@@ -1,4 +1,4 @@
-//Anette og Julians Seje Quiz
+//Anette, Maya og Julians Seje Quiz (og lidt Anders)
 
 //Dots
 const stepBtns = document.getElementById("step-btn");
@@ -8,20 +8,39 @@ const slide = document.getElementsByClassName("form-row");
 
 //Buttons
 const startBtn = document.getElementById("btn-start");
+const againBtn = document.getElementById("btn-tryagain");
 const backBtn = document.getElementById("btn-back");
 const nextBtn = document.getElementById("btn-next");
 
+//Img
+const thumbsbUpImg = document.getElementById("thumbsUpImg");
+const thumbsDownImg = document.getElementById("thumbsDownImg");
+
+let activeSlideNumber = 0;
+let hasTimerBeenStarted = false;
+
 function startQuiz() {
-    slide[0].classList.remove("form-row-active");
-    slide[1].classList.add("form-row-active");
-    dot[0].classList.add("dot-active");
+    activeSlideNumber = 0;
+    navigateForward();
+
     startBtn.style.display = "none";
     stepBtns.style.display = "flex";
-    //Starts Countdown
+
+    //Starts timer - removed
+    //startTimer()
+}
+
+// Timer as function
+function startTimer() {
+    if (hasTimerBeenStarted) {
+        return;
+    }
+
     var minutesLabel = document.getElementById("minutes");
     var secondsLabel = document.getElementById("seconds");
     var totalSeconds = 0;
     setInterval(setTime, 1000);
+    hasTimerBeenStarted = true;
 
     function setTime() {
         ++totalSeconds;
@@ -37,109 +56,104 @@ function startQuiz() {
             return valString;
         }
     }
-
 }
 
-// THIS NEEDS TO WORK!
-/*
-const true = 
-
-const qOne = document.querySelector('input[name="datatilsynet"]:checked').value;
-if (qOne = "true") {
-    document.getElementById("q1").innerText = "Korrekt svaret!";
-} if (qOne = "false") {
-    document.getElementById("q1").style.color = "red";
-    document.getElementById("q1").innerText = "Forkert svaret!";
-} */
-
-
-//NEW TRY! ONLY WORKS ON THE FIRST RADIO BUTTON - ALERTS
-
-
-// Den skal Anette fikse!!!
-/* const radioData = document.getElementsByName("datatilsynet");
-
-for (const i = 0, length = radioData.length; i < length; i++) {
-    if (radioData[i].checked) {
-        alert(radioData[i].value);
-        break;
+function restartQuiz() {
+    // Clean up dots
+    for (let i = 0; i < dot.length; i++) {
+        dot[i].classList.remove("dot-active");
     }
-} */
+    // Reset slides
+    slide[activeSlideNumber].classList.toggle("form-row-active");
+    slide[0].classList.toggle("form-row-active");
 
-function dotChangeNext() {
-    // Prints value from input when pressed
-    const aOne = document.querySelector('input[name="datatilsynet"]:checked').value;
-    document.getElementById("a1").innerText = aOne;
+    //Reset thumbImg
+    thumbsbUpImg.style.display = "none";
+    thumbsDownImg.style.display = "none";
 
-
-
-    if (slide[8].classList.contains("form-row-active")) {
-        slide[8].classList.toggle("form-row-active");
-        slide[9].classList.toggle("form-row-active");
-        stepBtns.style.display = "none";
-    }
-    else if (dot[6].classList.contains("dot-active")) {
-        dot[7].classList.toggle("dot-active");
-        slide[7].classList.toggle("form-row-active");
-        slide[8].classList.toggle("form-row-active");
-        nextBtn.innerText = "Afslut quizzen";
-    }
-    else if (dot[5].classList.contains("dot-active")) {
-        dot[6].classList.toggle("dot-active");
-        slide[6].classList.toggle("form-row-active");
-        slide[7].classList.toggle("form-row-active");
-    }
-    else if (dot[4].classList.contains("dot-active")) {
-        dot[5].classList.toggle("dot-active");
-        slide[5].classList.toggle("form-row-active");
-        slide[6].classList.toggle("form-row-active");
-    }
-    else if (dot[3].classList.contains("dot-active")) {
-        dot[4].classList.toggle("dot-active");
-        slide[4].classList.toggle("form-row-active");
-        slide[5].classList.toggle("form-row-active");
-    }
-    else if (dot[2].classList.contains("dot-active")) {
-        dot[3].classList.toggle("dot-active");
-        slide[3].classList.toggle("form-row-active");
-        slide[4].classList.toggle("form-row-active");
-    }
-    else if (dot[1].classList.contains("dot-active")) {
-        dot[2].classList.toggle("dot-active");
-        slide[2].classList.toggle("form-row-active");
-        slide[3].classList.toggle("form-row-active");
-
-    }
-    else if (dot[0].classList.contains("dot-active")) {
-        backBtn.classList.toggle("btn-inactive");
-        dot[1].classList.toggle("dot-active");
-        slide[1].classList.toggle("form-row-active");
-        slide[2].classList.toggle("form-row-active");
-    }
+    // Reset buttons
+    nextBtn.innerText = "Næste";
+    backBtn.classList.toggle("btn-inactive");
+    againBtn.style.display = "none";
+    // ... and start quiz again
+    startQuiz();
 }
 
-function dotChangeBack() {
-    // Type ! in front of element to do the opposite. Does NOT contain
-    if (dotTwo.classList.contains("dot-active")) {
-        backBtn.classList.toggle("btn-inactive");
-        dotTwo.classList.toggle("dot-active");
-        slideOne.classList.toggle("form-row-active");
-    }
-    if (!dotThree.classList.contains("dot-active")) {
-        dotTwo.classList.remove("dot-active");
-        slideOne.classList.remove("form-row-active");
-    }
-    if (!dotFour.classList.contains("dot-active")) {
-        dotThree.classList.remove("dot-active");
-    }
-    if (!dotFive.classList.contains("dot-active")) {
-        dotFour.classList.remove("dot-active");
-    }
-    if (!dotSix.classList.contains("dot-active")) {
-        dotFive.classList.remove("dot-active");
-    }
-    if (dotSix.classList.contains("dot-active")) {
-        dotSix.classList.remove("dot-active");
+function navigateForward() {
+    activeSlideNumber++;
+    showActiveSlide(true);
+}
+
+function navigateBackward() {
+    activeSlideNumber--;
+    showActiveSlide(false);
+}
+
+function showActiveSlide(isMoveForward) {
+    if (isMoveForward) {
+        // Disable previous slide and enable active slide
+        slide[activeSlideNumber - 1].classList.toggle("form-row-active");
+        slide[activeSlideNumber].classList.toggle("form-row-active");
+
+        if (activeSlideNumber == 2) {
+            backBtn.classList.toggle("btn-inactive");
+        } else if (activeSlideNumber == (slide.length - 2)) {
+            nextBtn.innerText = "Afslut quizzen";
+        } else if (activeSlideNumber == (slide.length - 1)) {
+            stepBtns.style.display = "none";
+            againBtn.style.display = "block";
+
+            //Prints checked value of radioButtons
+            const radioButtons = document.querySelectorAll('input[type="radio"]:checked');
+            for (let i = 0; i < radioButtons.length; i++) {
+                console.log(radioButtons[i].value);
+
+            }
+
+            const checkAnswer = document.getElementsByClassName("checkanswer");
+            let correctAnswers = 0;
+            let incorrectAnswers = 0;
+            const totalAnswerCount = document.getElementById("totalAnswerCount");
+
+            for (let i = 0; i < checkAnswer.length; i++) {
+                checkAnswer[i].innerHTML = radioButtons[i].value;
+
+                if (checkAnswer[i].innerHTML == "true") {
+                    checkAnswer[i].innerHTML = "Korrekt!";
+                    correctAnswers++;
+                } else {
+                    checkAnswer[i].innerHTML = "Forkert!";
+                    incorrectAnswers++;
+                }
+            }
+            totalAnswerCount.innerHTML = "Du har " + correctAnswers + (correctAnswers < 2 ? " korrekt svar!" : " korrekte svar!") + (correctAnswers > 5 ? " Godt gået! Du kan din datalovgivning!" : " Der skal vidst læses lidt op på datalovgivning!");
+            if (correctAnswers > 5) {
+                thumbsbUpImg.style.display = "block";
+            } else {
+                thumbsDownImg.style.display = "block";
+            }
+            console.log('Du havde ' + correctAnswers + ' korrekte svar!!' + (correctAnswers > 5 ? ' Godt gået!!' : ''));
+            console.log('... og ' + incorrectAnswers + ' forkerte svar!!' + (incorrectAnswers > 5 ? ' ØV!!' : ''));
+        }
+
+        // Only update dots on slide 1-8
+        if (activeSlideNumber - 1 < dot.length) {
+            dot[activeSlideNumber - 1].classList.toggle("dot-active");
+        }
+    } else {
+        // Disable previous slide and enable active slide
+        slide[activeSlideNumber].classList.toggle("form-row-active");
+        slide[activeSlideNumber + 1].classList.toggle("form-row-active");
+
+        if (activeSlideNumber == 1) {
+            backBtn.classList.toggle("btn-inactive");
+        } else if (activeSlideNumber == 7) {
+            nextBtn.innerText = "Næste";
+        }
+
+        if (activeSlideNumber - 1 < dot.length) {
+            dot[activeSlideNumber].classList.toggle("dot-active");
+        }
     }
 }
 
@@ -150,7 +164,6 @@ function infoPopup() {
 }
 
 //Cookie popup
-
 // Get the modal
 const cookieModal = document.getElementById("cookie-popup");
 
@@ -158,32 +171,30 @@ function closeCookiePopup() {
     cookieModal.style.display = "none";
 }
 
-
 //Report popup
-
 // Get the modal
 const reportModal = document.getElementById("report-popup");
 const reportOpenBtn = document.getElementById("report-btn");
 const span = document.getElementsByClassName("close")[0];
 
-// When the user clicks on the button, open the modal 
+// When the user clicks on the button, open the modal
 reportOpenBtn.onclick = function () {
     reportModal.style.display = "block";
-}
+};
 
 span.onclick = function () {
     reportModal.style.display = "none";
-}
+};
 
 window.onclick = function (event) {
     if (event.target == reportModal) {
         reportModal.style.display = "none";
     }
-}
+};
 
 /* Toggle between adding and removing the "responsive" class to topnav when the user clicks on the icon */
-function myFunction() {
-    var x = document.getElementById("myTopnav");
+function openNavBurger() {
+    const x = document.getElementById("topnav");
     if (x.className === "topnav") {
         x.className += " responsive";
     } else {
