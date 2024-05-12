@@ -235,7 +235,7 @@ section.form-section .block h1 {
   }
 }
 
-#step-btn {
+#step-btns {
   align-items: center;
   justify-content: center;
   display: none;
@@ -647,6 +647,13 @@ input {
   transition: background-color 0.3s ease;
 }
 
+.btn:disabled {
+  background-color: #f5f5f4;
+  color: black;
+  pointer-events: none;
+  cursor: default;
+}
+
 .btn-primary {
   background-color: #13293b;
   color: white;
@@ -670,11 +677,6 @@ input {
   color: black;
   pointer-events: none;
   cursor: default;
-}
-
-.btn-inactive:hover {
-  background-color: #f5f5f4;
-  color: black;
 }
 
 #btn-tryagain {

@@ -1,7 +1,7 @@
 //Anette, Maya og Julians Seje Quiz (og lidt Anders)
 
 //Dots
-const stepBtns = document.getElementById("step-btn");
+const stepBtns = document.getElementById("step-btns");
 
 const dots = document.getElementsByClassName("step-box__dot");
 const slides = document.getElementsByClassName("form-row");
@@ -25,9 +25,21 @@ function startQuiz() {
 
   startBtn.style.display = "none";
   stepBtns.style.display = "flex";
+  nextBtn.disabled = true;
 
   //Starts timer - removed
   //startTimer()
+}
+
+function isAnswerSelected() {
+  const currentSlide = slides[activeSlideNumber];
+  const radioButtons = currentSlide.querySelectorAll('input[type="radio"]');
+  for (let i = 0; i < radioButtons.length; i++) {
+    if (radioButtons[i].checked) {
+      return true;
+    }
+  }
+  return false;
 }
 
 // Timer as function
@@ -67,14 +79,23 @@ function restartQuiz() {
   slides[activeSlideNumber].classList.toggle("form-row-active");
   slides[0].classList.toggle("form-row-active");
 
-  //Reset thumbImg
+  // Reset thumbImg
   thumbsbUpImg.style.display = "none";
   thumbsDownImg.style.display = "none";
 
   // Reset buttons
   nextBtn.innerText = "Næste";
-  backBtn.classList.toggle("btn-inactive");
   againBtn.style.display = "none";
+
+  // Reset radio buttons
+  const radioButtons = document.querySelectorAll('input[type="radio"]');
+  for (let i = 0; i < radioButtons.length; i++) {
+    radioButtons[i].checked = false;
+  }
+
+  // Disable the "Next" button
+  nextBtn.disabled = true;
+
   // ... and start quiz again
   startQuiz();
 }
@@ -89,14 +110,34 @@ function navigateBackward() {
   showActiveSlide(false);
 }
 
+for (let i = 0; i < slides.length - 1; i++) {
+  const radioButtons = slides[i].querySelectorAll('input[type="radio"]');
+  for (let j = 0; j < radioButtons.length; j++) {
+    radioButtons[j].addEventListener("change", function () {
+      if (isAnswerSelected()) {
+        nextBtn.disabled = false;
+      }
+    });
+  }
+}
+
 function showActiveSlide(isMoveForward) {
   if (isMoveForward) {
+    if (activeSlideNumber < slides.length - 1) {
+      if (isAnswerSelected()) {
+        nextBtn.disabled = false;
+      } else {
+        nextBtn.disabled = true;
+      }
+    }
     // Disable previous slide and enable active slide
     slides[activeSlideNumber - 1].classList.toggle("form-row-active");
     slides[activeSlideNumber].classList.toggle("form-row-active");
 
-    if (activeSlideNumber == 2) {
-      backBtn.classList.toggle("btn-inactive");
+    if (activeSlideNumber == 1) {
+      backBtn.disabled = true;
+    } else if (activeSlideNumber === 2) {
+      backBtn.disabled = false;
     } else if (activeSlideNumber == slides.length - 2) {
       nextBtn.innerText = "Afslut quizzen";
     } else if (activeSlideNumber == slides.length - 1) {
@@ -107,9 +148,6 @@ function showActiveSlide(isMoveForward) {
       const radioButtons = document.querySelectorAll(
         'input[type="radio"]:checked'
       );
-      for (let i = 0; i < radioButtons.length; i++) {
-        console.log(radioButtons[i].value);
-      }
 
       const checkAnswer = document.getElementsByClassName("checkanswer");
       let correctAnswers = 0;
@@ -158,12 +196,17 @@ function showActiveSlide(isMoveForward) {
       dots[activeSlideNumber - 1].classList.toggle("dot-active");
     }
   } else {
+    if (isAnswerSelected()) {
+      nextBtn.disabled = false;
+    } else {
+      nextBtn.disabled = true;
+    }
     // Disable previous slide and enable active slide
     slides[activeSlideNumber].classList.toggle("form-row-active");
     slides[activeSlideNumber + 1].classList.toggle("form-row-active");
 
     if (activeSlideNumber == 1) {
-      backBtn.classList.toggle("btn-inactive");
+      backBtn.disabled = true;
     } else if (activeSlideNumber == 7) {
       nextBtn.innerText = "Næste";
     }
