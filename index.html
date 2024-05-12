@@ -1,443 +1,588 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/png" href="img/favicon.png">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="img/favicon.png" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
-        rel="stylesheet">
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
     <title>Datatilsynet</title>
-    <script src="https://kit.fontawesome.com/74a3c36122.js" crossorigin="anonymous"></script>
-</head>
+    <script
+      src="https://kit.fontawesome.com/74a3c36122.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
 
-<body id="root">
-
+  <body>
     <header>
-        <div class="container">
-            <a href="/"><img class="img-brand" src="img/dat-logo.png" alt=""></a>
-            <nav id="topnav" class="topnav">
-                <a class="hover-underline-animation" href="#">Hvad siger reglerne?</a>
-                <a class="hover-underline-animation" href="#">Borger</a>
-                <a class="hover-underline-animation" href="#">Afgørelser</a>
-                <a class="hover-underline-animation" href="#">Sikkerhedsbrud</a>
-                <a href="javascript:void(0);" class="icon" onclick="openNavBurger()">
-                    <i class="fas fa-bars"></i>
-                </a>
-            </nav>
-        </div>
+      <div class="container">
+        <a href="/"><img class="img-brand" src="img/dat-logo.png" alt="" /></a>
+        <nav id="topnav" class="topnav">
+          <a class="hover-underline-animation nav-link" href="#"
+            >Hvad siger reglerne?</a
+          >
+          <a class="hover-underline-animation nav-link" href="#">Borger</a>
+          <a class="hover-underline-animation nav-link" href="#">Afgørelser</a>
+          <a class="hover-underline-animation nav-link" href="#"
+            >Sikkerhedsbrud</a
+          >
+          <a href="javascript:void(0);" class="icon" onclick="openNavBurger()">
+            <i class="fas fa-bars"></i>
+          </a>
+        </nav>
+      </div>
     </header>
     <main>
-        <!-- Cookie Modal -->
-        <div id="cookie-popup" class="modal">
+      <section class="form-section">
+        <div class="container">
+          <div class="block">
+            <!--  <div id="timer"><label id="minutes">00</label>:<label id="seconds">00</label></div> -->
 
-            <!-- Modal content -->
-            <div class="modal-content">
-                <div class="modal-header">
-                    <img class="img-brand-modal" src="img/dat-logo.png" alt="">
-                </div>
-                <div class="modal-body">
-                    <h2>Du bestemmer over dine data</h2>
-                    <p>På vores hjemmeside bruges cookies udelukkende af os, og kun til, hvad vi mener er nødvendigt,
-                        for at
-                        få hjemmesiden til
-                        at fungere.</p><a href="#">Om cookies</a>
-                </div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" onclick="closeCookiePopup()">Kun
-                        nødvendige</button>
-                    <button class="btn btn-primary" type="button" onclick="closeCookiePopup()">Accepter
-                        alle</button>
-                </div>
+            <div class="info-popup" onclick="infoPopup()">
+              <img id="info-img" src="img/hexagon_info.svg" alt="" />
+              <span class="info-popuptext" id="info-popuptext"
+                >Hvis du får brug for hints undervejs er der altid hjælp at
+                hente på Datatilsynets
+                <a target="_blank" href="https://www.datatilsynet.dk"
+                  >hjemmeside</a
+                >.</span
+              >
             </div>
-
-        </div>
-        <!-- Report Modal -->
-        <div id="report-popup" class="modal">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <span class="close">&times;</span>
-                    <h2>Dokumentation til vores projekt</h2>
-                </div>
-                <div class="modal-img img1"> <img src="img/datatilsynet_projektledelse.svg" alt=""></div>
-                <div class="modal-body body1">
-                    <h2>Projektstyring</h2>
-                    <h3>WBS</h3>
-                    <p>I starten af vores planlægningsfase lavede vi en WBS for at nedbryde vores arbejdsopgaver til de
-                        arbejdspakker som vi skal lave for at komme i mål med opgaven.
-                    </p>
-                    <a href="img/wbs.jpg" target="_blank">Se WBS her</a>
-                    <h3>Gantt Chart</h3>
-                    <p>Vi overførte vores WBS til et Gantt Chart for at få bedre overblik over alle elementer i
-                        projektet. Vi lavede det som en grafisk tidsplan med start og slutdatoer for de enkelte opgaver.
-                    </p>
-                    <a href="img/gantt_chart.jpg" target="_blank">Se Gantt chart her</a>
-                    <h3>Trello, Slack og Github</h3>
-                    <p>Vi oprettede et workspace i Trello som blev vores primære "delingsplatform". Slack brugte vi som
-                        kommunikationsplatform til at koordinere zoom-møder, generelle status beskeder og anden
-                        kommunikation.
-                        Vi oprettede et Repositoy på Github som vi fik koblet sammen med Visuel Studie. På den måde
-                        havde vi alle adgang til vores arbejde i Visuel Studie og kunne følge med i arbejdets udvikling.
-                    </p>
-                </div>
-                <div class="modal-img img2"> <img src="img/datatilsynet_maalgruppe.svg" alt=""></div>
-                <div class="modal-body body2">
-                    <h2>Målgruppe</h2>
-                    <h3>Vi har valgt at arbejde med virksomheder, herunder specifikt webshops, i Danmark.</h3>
-                    <p>I Danmark har vi 321.494 aktive virksomheder med 2.276.102 ansatte.
-                        Der er 45.507 aktive koncerner med 899.681 ansatte.1
-                        En tredjedel af de danske virksomheder har webshop2
-
-                        Vores målgruppe består derfor af 96.448 virksomheder med webshops i Danmark.
-                    </p>
-                    <h3>Hvor stor er vores målgruppe målt i antal medarbejdere?</h3>
-                    <p>Vores målgruppe er en person der arbejder som dataansvarlig eller som databehandler i en
-                        virksomhed med webshop.
-                        Der vil være minimum én dataansvarlig eller behandler pr. virksomhed og dvs. at vores målgruppe
-                        målt i antal medarbejdere er det samme som antal af aktive virksomheder med webshobs i Danmark,
-                        altså 96.448 medarbejdere.
-                    </p>
-                    <h3>I hvilken afdeling i virksomheden skal vi finde vores målgruppe?</h3>
-                    <p>Vores dataansvarlige eller databehandler kan sidde i forskellige afdelinger af en virksomhed,
-                        afhængig af virksomhedens størrelse.
-                        Den typiske afdeling vil være IT-afdelingen.
-                    </p>
-                    <h3>Konklusion</h3>
-                    <p>Vi skal ud at ramme minimum 96.500 medarbejdere med vores spørgeskema og teste deres viden
-                        omkring Datatilsynet og GDPR. Vi skal målrette vores fokus mod IT-afdelingerne rundt om i de
-                        danske virksomheder med webshops.</p>
-                </div>
-                <div class="modal-img img3"> <img src="img/datatilsynet_interessentanalyse.svg" alt=""></div>
-                <div class="modal-body body3">
-                    <h2>Interessent Analyse</h2>
-                    <h3>1. Europaparlementet</h3>
-                    <p>Datatilsynet startede i Europa, så ændringer som sker i lovgivningen i Europaparlementet og andre
-                        eupæiske lande kan få indflydelse på de danske lovgivninger og regler angående datasikkerhed.
-                    </p>
-                    <h3>2. Databeskyttelsesloven</h3>
-                    <p>Databeskyttelsesloven er både aktuel og afgørende for, hvordan persondata bliver behandlet. Det
-                        er derfor en central del af vores fundament for vores quiz.
-                    </p>
-                    <h3>3. Vores virksomhed</h3>
-                    <p>Vores virksomhed har en ønsket handlemåde i forhold til projekter - altså at løse den givne
-                        opgave.
-                    </p>
-                    <h3>4. Datatilsynet</h3>
-                    <p>Det er justitsministeren i den siddende regering som udpeger den øverste chef i Datatilsynet, så
-                        en
-                        ændring i regerigen kan få konsekvenser for Datatilsynet.
-                    </p>
-                    <h3>5. Forbrugeren</h3>
-                    <p>Forbrugeren har hverken nogen magt eller legitimitet, men er naturligvis underlagt af
-                        datalovgivningen. Derfor har de en form for aktive, og værd at lytte til.
-                    </p>
-                    <a href="img/interessent-analyse.svg" target="_blank">Se interessent analysen her</a>
-                </div>
-                <div class="modal-img img4"> <img src="img/datatilsynet_risikoanalyse.svg" alt=""></div>
-                <div class="modal-body body4">
-                    <h2>Risiko analyse</h2>
-                    <h3>Risiko Matrix</h3>
-                    <ol>
-                        <li>IT-nedbrud</li>
-                        <li>Indbrud/tyveri</li>
-                        <li>Brand/vandskade</li>
-                        <li>Usamarbejdsvillige medarbejder</li>
-                        <li>Ny data-lovgivning</li>
-                    </ol>
-                    <h3>Risiko håndtering</h3>
-                    <ol>
-                        <li>Cloud- og lokal /ekstern-harddisk IT Backup</li>
-                        <li>Sørger for at have de bedste indbrudsforanstaltninger, aflåste pengeskabe med back-up’s af
-                            vigtige dokumenter og evt. IT-materialer, samt indbruds/tyveri forsikringer m.v.</li>
-                        <li>Der er ikke så meget at gøre i tilfælde af brand og vandskade. Vi har forsikringer på plads,
-                            og ellers sørger vi for at brandbart materiale ikke kommer i nærheden af åben ild.</li>
-                        <li>Kompetente medarbejdere der kan håndtere alle relevante arbejdsopgaver, så vi kan dække
-                            andre medarbejderes opgaver f.eks. ved sygdom eller usamarbejdsvillighed.</li>
-                        <li>Ved ny lovgivning accepter vi evt. nye ændringer og forholder os opdateret og retter til.
-                        </li>
-                    </ol>
-                    <a href="img/risikoformel-og-matrix01_outline-01.svg" target="_blank">Se risiko analysen her</a><br>
-                    <a href="img/risikoformel-og-matrix01_outline-02.svg" target="_blank">Se risiko status</a>
-                </div>
-                <div class="modal-footer">
-                    <small><i>
-                            <ul>
-                                <li>1 (kilde: dst.dk, statistik fra 2019)</li>
-                                <li>2 Kilde:EUROSTAT (Hvor gode er danske virksomheder til e-handel? - DI Handel
-                                    (danskindustri.dk)</li>
-                            </ul>
-                        </i></small>
-                </div>
+            <h1>Quiz om Datatilsynet</h1>
+            <div class="step-box">
+              <span class="step-box__dot"></span>
+              <hr class="step" />
+              <span class="step-box__dot"></span>
+              <hr class="step" />
+              <span class="step-box__dot"></span>
+              <hr class="step" />
+              <span class="step-box__dot"></span>
+              <hr class="step" />
+              <span class="step-box__dot"></span>
+              <hr class="step" />
+              <span class="step-box__dot"></span>
+              <hr class="step" />
+              <span class="step-box__dot"></span>
+              <hr class="step" />
+              <span class="step-box__dot"></span>
             </div>
-
-        </div>
-        <section class="form-section">
-            <div class="container">
-               <!--  <div id="timer"><label id="minutes">00</label>:<label id="seconds">00</label></div> -->
-
-                <div class="info-popup" onclick="infoPopup()"><img id="info-img" src="img/hexagon_info.svg" alt="" />
-                    <span class="info-popuptext" id="info-popuptext">Hvis du får brug for hints undervejs er der altid
-                        hjælp at hente på Datatilsynets <a target="_blank"
-                            href="https://www.datatilsynet.dk">hjemmeside</a>.</span>
-                </div>
-                <h1>Quiz om Datatilsynet</h1>
-                <div class="step-dot-box">
-                    <span class="step-dot"></span>
-                    <hr class="step">
-                    <span class="step-dot"></span>
-                    <hr class="step">
-                    <span class="step-dot"></span>
-                    <hr class="step">
-                    <span class="step-dot"></span>
-                    <hr class="step">
-                    <span class="step-dot"></span>
-                    <hr class="step">
-                    <span class="step-dot"></span>
-                    <hr class="step">
-                    <span class="step-dot"></span>
-                    <hr class="step">
-                    <span class="step-dot"></span>
-                </div>
-                <div class="wrapper">
-                    <form>
-                        <div class="row form-row form-row-active slide" id="slide-0">
-                            <div class="col">
-                                <img src="img/datatilsynet_0.svg" class="img-fluid" alt="">
-                            </div>
-                            <div class="col">
-                                <h2>Velkommen til dataquizzen</h2>
-                                <p>Mange danskere ved ikke hvad Datatilsynet er for en enhed og hvad formål de tjener i
-                                    det danske samfund. Derudover har Datatilsynet ikke gjort meget for at brande sig
-                                    selv i offentligheden og har derfor ikke en profil som nogen kender meget til.</p>
-                                <p>Vi har derfor lavet en multiple choice quiz, som har til formål at styrke
-                                    virksomheders generelle
-                                    viden om Datatilsynet og dens virke. Så hvad venter du på? Tag quizzen og konkurrer
-                                    med dine kolleger om at få flest mulige korrekte svar!
-                                </p>
-                                <p><i class="fas fa-exclamation-circle"></i> Får du brug for hjælp undervejs, så klik på informationsikonet i højre hjørne.</p>
-<!--                                 <p><i class="fas fa-exclamation-circle"></i> Tiden sættes i gang så snart du har trykket
+            <div class="wrapper">
+              <form>
+                <div class="row form-row form-row-active slide" id="slide-0">
+                  <div class="col">
+                    <img
+                      src="img/datatilsynet_0.svg"
+                      class="img-fluid"
+                      alt=""
+                    />
+                  </div>
+                  <div class="col">
+                    <h2>Velkommen til dataquizzen</h2>
+                    <p>
+                      Mange danskere ved ikke hvad Datatilsynet er for en enhed
+                      og hvad formål de tjener i det danske samfund. Derudover
+                      har Datatilsynet ikke gjort meget for at brande sig selv i
+                      offentligheden og har derfor ikke en profil som nogen
+                      kender meget til.
+                    </p>
+                    <p>
+                      Vi har derfor lavet en multiple choice quiz, som har til
+                      formål at styrke virksomheders generelle viden om
+                      Datatilsynet og dens virke. Så hvad venter du på? Tag
+                      quizzen og konkurrer med dine kolleger om at få flest
+                      mulige korrekte svar!
+                    </p>
+                    <p>
+                      <i class="fas fa-exclamation-circle"></i> Får du brug for
+                      hjælp undervejs, så klik på informationsikonet i højre
+                      hjørne.
+                    </p>
+                    <!--                                 <p><i class="fas fa-exclamation-circle"></i> Tiden sættes i gang så snart du har trykket
                                     "start quizzen".</p> -->
-                            </div>
-                        </div>
-                        <div class="row form-row slide" id="slide-1">
-                            <div class="col">
-                                <img src="img/datatilsynet_1.svg" class="img-fluid" alt="">
-                            </div>
-                            <div class="col">
-                                <h2>Datatilsynet</h2>
-                                <p>Datatilsynet er den centrale uafhængige myndighed, der fører tilsyn med, at reglerne
-                                    om databeskyttelse bliver overholdt. Datatilsynets lovbestemte beføjelser,
-                                    funktioner og pligter stammer fra databeskyttelsesforordningen,
-                                    databeskyttelsesloven, retshåndhævelsesdirektivet, retshåndhævelsesloven samt
-                                    tv-overvågningsloven.</p>
-                                <h3 class="question-title">Hvad er én af Datatilsynets primære missioner?</h3>
-                                <p><i>Vælg kun ét svar:</i></p>
-                                <input type="radio" id="datatilsynet1" name="datatilsynet" value="false"> <label
-                                    for="datatilsynet1"> Forsikring mod arbejdsløshed samt administrere offentlige
-                                    love og regler på området</label><br>
-                                <input type="radio" id="datatilsynet2" name="datatilsynet" value="false">
-                                <label for="datatilsynet2"> Håndhæve Danmarks og Rigsfællesskabets militære
-                                    suverænitet</label><br>
-                                <input type="radio" id="datatilsynet3" name="datatilsynet" value="true">
-                                <label for="datatilsynet3"> Sætte aftryk på national datalovgivning og europæisk
-                                    samarbejde</label><br>
-                                <input type="radio" id="datatilsynet4" name="datatilsynet" value="false">
-                                <label for="datatilsynet4"> Administre skattebetalinger, som landets borgere og
-                                    virksomheder betaler til det offentlige</label>
-                            </div>
-
-                        </div>
-                        <div class="row form-row slide" id="slide-2">
-                            <div class="col">
-                                <img src="img/datatilsynet_2.svg" class="img-fluid" alt="">
-                            </div>
-                            <div class="col">
-                                <h2>GDPR</h2>
-                                <p>GDPR er en lovgivning indført af EU i 2016. Den har til formål at styrke og
-                                    harmonisere beskyttelsen af personoplysninger i Den Europæiske Union.</p>
-                                <h3 class="question-title">Hvad står
-                                    forkortelsen GDPR for?</h3>
-                                <p><i>Vælg kun ét svar:</i></p>
-                                <input type="radio" id="gdpr1" name="gdpr" value="false">
-                                <label for="gdpr1"> Good Data Performance Results</label><br>
-                                <input type="radio" id="gdpr2" name="gdpr" value="false">
-                                <label for="gdpr2"> General Demand Per Responsibility</label><br>
-                                <input type="radio" id="gdpr3" name="gdpr" value="true">
-                                <label for="gdpr3"> General Data Protection Regulation</label><br>
-                                <input type="radio" id="gdpr4" name="gdpr" value="false">
-                                <label for="gdpr4"> God Damn Putin & Russia</label>
-                            </div>
-
-                        </div>
-                        <div class="row form-row slide" id="slide-3">
-                            <div class="col">
-                                <img src="img/datatilsynet_3.svg" class="img-fluid" alt="">
-                            </div>
-                            <div class="col">
-                                <h2>Den dataansvarlige</h2>
-                                <p>Databeskyttelsesforordningen definerer ”den dataansvarlige” som den fysiske eller
-                                    juridiske person, offentlige myndighed, institution mv., der alene eller sammen med
-                                    andre afgør, til hvilket formål og med hvilke hjælpemidler der må foretages
-                                    behandling af oplysninger.
-                                    Det afgørende er, hvem der faktisk afgør, hvordan oplysningerne skal behandles.
-                                </p>
-                                <h3 class="question-title">Hvem bør den dataansvarlige i en virksomhed altid være?</h3>
-                                <p><i>Vælg kun ét svar:</i></p>
-                                <input type="radio" id="dataansvarlig1" name="dataansvarlig" value="true">
-                                <label for="dataansvarlig1"> Det kan være hvilken som helst</label><br>
-                                <input type="radio" id="dataansvarlig2" name="dataansvarlig" value="false">
-                                <label for="dataansvarlig2"> Det er altid den kundeansvarlig</label><br>
-                                <input type="radio" id="dataansvarlig3" name="dataansvarlig" value="false">
-                                <label for="dataansvarlig3"> Den IT-ansvarlige</label><br>
-                                <input type="radio" id="dataansvarlig4" name="dataansvarlig" value="false">
-                                <label for="dataansvarlig4"> Direktøren selv</label>
-                            </div>
-                        </div>
-                        <div class="row form-row slide" id="slide-4">
-                            <div class="col">
-                                <img src="img/datatilsynet_4.svg" class="img-fluid" alt="">
-                            </div>
-                            <div class="col">
-                                <h2>Cookiepolitik</h2>
-                                <p>Det er lovpligtigt at du indsamler gyldige samtykker på tværs af både dine websites
-                                    og applikationer. For at undgå risikoen for at være i strid med lovgivningen skal
-                                    din virksomhed overholde internationale regler for Privatlivspolitik og
-                                    Databeskyttelse.
-                                </p>
-                                <h3 class="question-title">Hvad er “Best practise” i indsamling af cookiesamtykke?</h3>
-                                <p><i>Vælg kun ét svar:</i></p>
-                                <input type="radio" id="cookie1" name="cookie" value="false">
-                                <label for="cookie1"> Lav din egen pop-up boks med en “OK”-knap til accept af dine
-                                    cookie-regler</label><br>
-                                <input type="radio" id="cookie2" name="cookie" value="false">
-                                <label for="cookie2"> Vejled dine besøgende til den nemmeste cookie-opskrift</label><br>
-                                <input type="radio" id="cookie3" name="cookie" value="true">
-                                <label for="cookie3"> Indhent samtykke via en tjeneste, f.eks. en CMP (Consent
-                                    management platform)</label><br>
-                            </div>
-                        </div>
-                        <div class="row form-row slide" id="slide-5">
-                            <div class="col">
-                                <img src="img/datatilsynet_5.svg" class="img-fluid" alt="">
-                            </div>
-                            <div class="col">
-                                <h2>Bøde og straf</h2>
-                                <p>Datatilsynet kan ved alvorlige brud på databeskyttelsesreglerne politianmelde
-                                    dataansvarlige og indstille dem.
-                                </p>
-                                <h3 class="question-title">Hvad er straffen ved alvorlige brud af
-                                    databeskyttelsesreglerne?</h3>
-                                <p><i>Vælg kun ét svar:</i></p>
-                                <input type="radio" id="straf1" name="straf" value="false">
-                                <label for="straf1"> En direkte erstatning til den data beskyttede</label><br>
-                                <input type="radio" id="straf2" name="straf" value="true">
-                                <label for="straf2"> Bøde eller fængsel i op til 6 måneder</label><br>
-                                <input type="radio" id="straf3" name="straf" value="false">
-                                <label for="straf3"> Et rap over nallerne!</label><br>
-                            </div>
-                        </div>
-                        <div class="row form-row slide" id="slide-6">
-                            <div class="col">
-                                <img src="img/datatilsynet_6.svg" class="img-fluid" alt="">
-                            </div>
-                            <div class="col">
-                                <h2>Bortskaffelse af information</h2>
-                                <p>Forbrugeren kan altid gøre indsigelse mod behandling, fx en offentliggørelse, af
-                                    oplysninger om dem.
-                                </p>
-                                <h3 class="question-title">Hvor hurtigt skal forbrugeroplysninger slettes?</h3>
-                                <p><i>Vælg kun ét svar:</i></p>
-                                <input type="radio" id="sletning1" name="sletning" value="false">
-                                <label for="sletning1"> Inden for 48 timer</label><br>
-                                <input type="radio" id="sletning2" name="sletning" value="false">
-                                <label for="sletning2"> Inden for en uge</label><br>
-                                <input type="radio" id="sletning3" name="sletning" value="true">
-                                <label for="sletning3"> Blot inden for en rimelig tidshorisont</label><br>
-                            </div>
-                        </div>
-                        <div class="row form-row slide" id="slide-7">
-                            <div class="col">
-                                <img src="img/datatilsynet_7.svg" class="img-fluid" alt="">
-                            </div>
-                            <div class="col">
-                                <h2>Profilbilleder</h2>
-                                <p>Når du (den dataansvarlige) vil offentliggøre et billede på internettet med
-                                    identificerbare personer, er det afgørende, at du gør dig klart, hvad dit grundlag
-                                    for at offentliggøre billedet er.
-
-                                </p>
-                                <h3 class="question-title">Hvornår betragtes et billede som en personoplysning?</h3>
-                                <p><i>Vælg kun ét svar:</i></p>
-                                <input type="radio" id="billede1" name="billede" value="true">
-                                <label for="billede1"> Når det drejer sig om en genkendelig person</label><br>
-                                <input type="radio" id="billede2" name="billede" value="false">
-                                <label for="billede2"> Aldrig</label><br>
-                                <input type="radio" id="billede3" name="billede" value="false">
-                                <label for="billede3"> Det gør det altid, uanset indhold</label><br>
-                            </div>
-                        </div>
-                        <div class="row form-row slide" id="slide-8">
-                            <div class="col">
-                                <img src="img/datatilsynet_8.svg" class="img-fluid" alt="">
-                            </div>
-                            <div class="col">
-                                <h2>Klage</h2>
-                                <p>Datatilsynet fører tilsyn med, at offentlige myndigheder, private virksomheder mv.
-                                    behandler personoplysninger i overensstemmelse med databeskyttelsesforordningen og
-                                    databeskyttelsesloven.
-                                </p>
-                                <h3 class="question-title">Hvordan skal du forholde dig til en klage?</h3>
-                                <p><i>Vælg kun ét svar:</i></p>
-                                <input type="radio" id="klage1" name="klage" value="false">
-                                <label for="klage1"> Tager en dyb indånding og drik en kop kaffe. Det skal nok gå over
-                                    af sig selv!</label><br>
-                                <input type="radio" id="klage2" name="klage" value="true">
-                                <label for="klage2"> Vurdere, hvorvidt behandling af oplysninger sker inden for rammerne
-                                    af databeskyttelsesreglerne</label><br>
-                                <input type="radio" id="klage3" name="klage" value="false">
-                                <label for="klage3"> Print klagen ud og smid den direkte i makulatoren</label><br>
-                                <input type="radio" id="klage4" name="klage" value="false">
-                                <label for="klage4"> Du tager klagen alvorligt og sender den straks til Datatilsynet da
-                                    det ikke er dit ansvar</label><br>
-                            </div>
-                        </div>
-                        <div class="row row-cols-2 form-row slide" id="slide-9">
-                            <div class="full-col">
-                                <h2>Resultat</h2>
-                                <div class="thumbsimg"> <img id="thumbsUpImg" src="img/datatilsynet_thumbsup.svg"
-                                        alt="Thumbs-up">
-                                    <img id="thumbsDownImg" src="img/datatilsynet_thumbsdown.svg" alt="Thumbs-down">
-                                </div>
-                                <p id="totalAnswerCount">Hov! Der gik noget galt!</p>
-                            </div>
-                            <div class="col">
-                                <h3 class="question-title">Hvad er Datatilsynet primære opgaver?</h3>
-                                <p>Du har svaret: <span class="checkanswer">Du mangler at svare!</span></p>
-                                <h3 class="question-title">Hvad står forkortelsen GDPR for?</h3>
-                                <p>Du har svaret: <span class="checkanswer">Du mangler at svare!</span></p>
-                                <h3 class="question-title">Hvem bør den dataansvarlige i en virksomhed altid være?</h3>
-                                <p>Du har svaret: <span class="checkanswer">Du mangler at svare!</span></p>
-                                <h3 class="question-title">Hvad er “Best practise” i indsamling af cookiesamtykke?</h3>
-                                <p>Du har svaret: <span class="checkanswer">Du mangler at svare!</span></p>
-                            </div>
-                            <div class="col">
-                                <h3 class="question-title">Hvad er straffen ved alvorlige brud af
-                                    databeskyttelsesreglerne?</h3>
-                                <p>Du har svaret: <span class="checkanswer">Du mangler at svare!</span></p>
-                                <h3 class="question-title">Hvor hurtigt skal forbrugeroplysninger slettes?</h3>
-                                <p>Du har svaret: <span class="checkanswer">Du mangler at svare!</span></p>
-                                <h3 class="question-title">Hvornår betragtes et billede som en personoplysning?</h3>
-                                <p>Du har svaret: <span class="checkanswer">Du mangler at svare!</span></p>
-                                <h3 class="question-title">Hvordan skal du forholde dig til en klage?</h3>
-                                <p>Du har svaret: <span class="checkanswer">Du mangler at svare!</span></p>
-                            </div>
-                        </div>
-                        <!--                         <div class="row form-row slide" id="slide-10">
+                  </div>
+                </div>
+                <div class="row form-row slide" id="slide-1">
+                  <div class="col">
+                    <img
+                      src="img/datatilsynet_1.svg"
+                      class="img-fluid"
+                      alt=""
+                    />
+                  </div>
+                  <div class="col">
+                    <h2>Datatilsynet</h2>
+                    <p>
+                      Datatilsynet er den centrale uafhængige myndighed, der
+                      fører tilsyn med, at reglerne om databeskyttelse bliver
+                      overholdt. Datatilsynets lovbestemte beføjelser,
+                      funktioner og pligter stammer fra
+                      databeskyttelsesforordningen, databeskyttelsesloven,
+                      retshåndhævelsesdirektivet, retshåndhævelsesloven samt
+                      tv-overvågningsloven.
+                    </p>
+                    <h3 class="question-title">
+                      Hvad er én af Datatilsynets primære missioner?
+                    </h3>
+                    <p><i>Vælg kun ét svar:</i></p>
+                    <input
+                      type="radio"
+                      id="datatilsynet1"
+                      name="datatilsynet"
+                      value="false"
+                    />
+                    <label for="datatilsynet1">
+                      Forsikring mod arbejdsløshed samt administrere offentlige
+                      love og regler på området</label
+                    ><br />
+                    <input
+                      type="radio"
+                      id="datatilsynet2"
+                      name="datatilsynet"
+                      value="false"
+                    />
+                    <label for="datatilsynet2">
+                      Håndhæve Danmarks og Rigsfællesskabets militære
+                      suverænitet</label
+                    ><br />
+                    <input
+                      type="radio"
+                      id="datatilsynet3"
+                      name="datatilsynet"
+                      value="true"
+                    />
+                    <label for="datatilsynet3">
+                      Sætte aftryk på national datalovgivning og europæisk
+                      samarbejde</label
+                    ><br />
+                    <input
+                      type="radio"
+                      id="datatilsynet4"
+                      name="datatilsynet"
+                      value="false"
+                    />
+                    <label for="datatilsynet4">
+                      Administre skattebetalinger, som landets borgere og
+                      virksomheder betaler til det offentlige</label
+                    >
+                  </div>
+                </div>
+                <div class="row form-row slide" id="slide-2">
+                  <div class="col">
+                    <img
+                      src="img/datatilsynet_2.svg"
+                      class="img-fluid"
+                      alt=""
+                    />
+                  </div>
+                  <div class="col">
+                    <h2>GDPR</h2>
+                    <p>
+                      GDPR er en lovgivning indført af EU i 2016. Den har til
+                      formål at styrke og harmonisere beskyttelsen af
+                      personoplysninger i Den Europæiske Union.
+                    </p>
+                    <h3 class="question-title">
+                      Hvad står forkortelsen GDPR for?
+                    </h3>
+                    <p><i>Vælg kun ét svar:</i></p>
+                    <input type="radio" id="gdpr1" name="gdpr" value="false" />
+                    <label for="gdpr1"> Good Data Performance Results</label
+                    ><br />
+                    <input type="radio" id="gdpr2" name="gdpr" value="false" />
+                    <label for="gdpr2"> General Demand Per Responsibility</label
+                    ><br />
+                    <input type="radio" id="gdpr3" name="gdpr" value="true" />
+                    <label for="gdpr3">
+                      General Data Protection Regulation</label
+                    ><br />
+                    <input type="radio" id="gdpr4" name="gdpr" value="false" />
+                    <label for="gdpr4"> God Damn Putin & Russia</label>
+                  </div>
+                </div>
+                <div class="row form-row slide" id="slide-3">
+                  <div class="col">
+                    <img
+                      src="img/datatilsynet_3.svg"
+                      class="img-fluid"
+                      alt=""
+                    />
+                  </div>
+                  <div class="col">
+                    <h2>Den dataansvarlige</h2>
+                    <p>
+                      Databeskyttelsesforordningen definerer ”den
+                      dataansvarlige” som den fysiske eller juridiske person,
+                      offentlige myndighed, institution mv., der alene eller
+                      sammen med andre afgør, til hvilket formål og med hvilke
+                      hjælpemidler der må foretages behandling af oplysninger.
+                      Det afgørende er, hvem der faktisk afgør, hvordan
+                      oplysningerne skal behandles.
+                    </p>
+                    <h3 class="question-title">
+                      Hvem bør den dataansvarlige i en virksomhed altid være?
+                    </h3>
+                    <p><i>Vælg kun ét svar:</i></p>
+                    <input
+                      type="radio"
+                      id="dataansvarlig1"
+                      name="dataansvarlig"
+                      value="true"
+                    />
+                    <label for="dataansvarlig1">
+                      Det kan være hvilken som helst</label
+                    ><br />
+                    <input
+                      type="radio"
+                      id="dataansvarlig2"
+                      name="dataansvarlig"
+                      value="false"
+                    />
+                    <label for="dataansvarlig2">
+                      Det er altid den kundeansvarlig</label
+                    ><br />
+                    <input
+                      type="radio"
+                      id="dataansvarlig3"
+                      name="dataansvarlig"
+                      value="false"
+                    />
+                    <label for="dataansvarlig3"> Den IT-ansvarlige</label><br />
+                    <input
+                      type="radio"
+                      id="dataansvarlig4"
+                      name="dataansvarlig"
+                      value="false"
+                    />
+                    <label for="dataansvarlig4"> Direktøren selv</label>
+                  </div>
+                </div>
+                <div class="row form-row slide" id="slide-4">
+                  <div class="col">
+                    <img
+                      src="img/datatilsynet_4.svg"
+                      class="img-fluid"
+                      alt=""
+                    />
+                  </div>
+                  <div class="col">
+                    <h2>Cookiepolitik</h2>
+                    <p>
+                      Det er lovpligtigt at du indsamler gyldige samtykker på
+                      tværs af både dine websites og applikationer. For at undgå
+                      risikoen for at være i strid med lovgivningen skal din
+                      virksomhed overholde internationale regler for
+                      Privatlivspolitik og Databeskyttelse.
+                    </p>
+                    <h3 class="question-title">
+                      Hvad er “Best practise” i indsamling af cookiesamtykke?
+                    </h3>
+                    <p><i>Vælg kun ét svar:</i></p>
+                    <input
+                      type="radio"
+                      id="cookie1"
+                      name="cookie"
+                      value="false"
+                    />
+                    <label for="cookie1">
+                      Lav din egen pop-up boks med en “OK”-knap til accept af
+                      dine cookie-regler</label
+                    ><br />
+                    <input
+                      type="radio"
+                      id="cookie2"
+                      name="cookie"
+                      value="false"
+                    />
+                    <label for="cookie2">
+                      Vejled dine besøgende til den nemmeste
+                      cookie-opskrift</label
+                    ><br />
+                    <input
+                      type="radio"
+                      id="cookie3"
+                      name="cookie"
+                      value="true"
+                    />
+                    <label for="cookie3">
+                      Indhent samtykke via en tjeneste, f.eks. en CMP (Consent
+                      management platform)</label
+                    ><br />
+                  </div>
+                </div>
+                <div class="row form-row slide" id="slide-5">
+                  <div class="col">
+                    <img
+                      src="img/datatilsynet_5.svg"
+                      class="img-fluid"
+                      alt=""
+                    />
+                  </div>
+                  <div class="col">
+                    <h2>Bøde og straf</h2>
+                    <p>
+                      Datatilsynet kan ved alvorlige brud på
+                      databeskyttelsesreglerne politianmelde dataansvarlige og
+                      indstille dem.
+                    </p>
+                    <h3 class="question-title">
+                      Hvad er straffen ved alvorlige brud af
+                      databeskyttelsesreglerne?
+                    </h3>
+                    <p><i>Vælg kun ét svar:</i></p>
+                    <input
+                      type="radio"
+                      id="straf1"
+                      name="straf"
+                      value="false"
+                    />
+                    <label for="straf1">
+                      En direkte erstatning til den data beskyttede</label
+                    ><br />
+                    <input type="radio" id="straf2" name="straf" value="true" />
+                    <label for="straf2">
+                      Bøde eller fængsel i op til 6 måneder</label
+                    ><br />
+                    <input
+                      type="radio"
+                      id="straf3"
+                      name="straf"
+                      value="false"
+                    />
+                    <label for="straf3"> Et rap over nallerne!</label><br />
+                  </div>
+                </div>
+                <div class="row form-row slide" id="slide-6">
+                  <div class="col">
+                    <img
+                      src="img/datatilsynet_6.svg"
+                      class="img-fluid"
+                      alt=""
+                    />
+                  </div>
+                  <div class="col">
+                    <h2>Bortskaffelse af information</h2>
+                    <p>
+                      Forbrugeren kan altid gøre indsigelse mod behandling, fx
+                      en offentliggørelse, af oplysninger om dem.
+                    </p>
+                    <h3 class="question-title">
+                      Hvor hurtigt skal forbrugeroplysninger slettes?
+                    </h3>
+                    <p><i>Vælg kun ét svar:</i></p>
+                    <input
+                      type="radio"
+                      id="sletning1"
+                      name="sletning"
+                      value="false"
+                    />
+                    <label for="sletning1"> Inden for 48 timer</label><br />
+                    <input
+                      type="radio"
+                      id="sletning2"
+                      name="sletning"
+                      value="false"
+                    />
+                    <label for="sletning2"> Inden for en uge</label><br />
+                    <input
+                      type="radio"
+                      id="sletning3"
+                      name="sletning"
+                      value="true"
+                    />
+                    <label for="sletning3">
+                      Blot inden for en rimelig tidshorisont</label
+                    ><br />
+                  </div>
+                </div>
+                <div class="row form-row slide" id="slide-7">
+                  <div class="col">
+                    <img
+                      src="img/datatilsynet_7.svg"
+                      class="img-fluid"
+                      alt=""
+                    />
+                  </div>
+                  <div class="col">
+                    <h2>Profilbilleder</h2>
+                    <p>
+                      Når du (den dataansvarlige) vil offentliggøre et billede
+                      på internettet med identificerbare personer, er det
+                      afgørende, at du gør dig klart, hvad dit grundlag for at
+                      offentliggøre billedet er.
+                    </p>
+                    <h3 class="question-title">
+                      Hvornår betragtes et billede som en personoplysning?
+                    </h3>
+                    <p><i>Vælg kun ét svar:</i></p>
+                    <input
+                      type="radio"
+                      id="billede1"
+                      name="billede"
+                      value="true"
+                    />
+                    <label for="billede1">
+                      Når det drejer sig om en genkendelig person</label
+                    ><br />
+                    <input
+                      type="radio"
+                      id="billede2"
+                      name="billede"
+                      value="false"
+                    />
+                    <label for="billede2"> Aldrig</label><br />
+                    <input
+                      type="radio"
+                      id="billede3"
+                      name="billede"
+                      value="false"
+                    />
+                    <label for="billede3">
+                      Det gør det altid, uanset indhold</label
+                    ><br />
+                  </div>
+                </div>
+                <div class="row form-row slide" id="slide-8">
+                  <div class="col">
+                    <img
+                      src="img/datatilsynet_8.svg"
+                      class="img-fluid"
+                      alt=""
+                    />
+                  </div>
+                  <div class="col">
+                    <h2>Klage</h2>
+                    <p>
+                      Datatilsynet fører tilsyn med, at offentlige myndigheder,
+                      private virksomheder mv. behandler personoplysninger i
+                      overensstemmelse med databeskyttelsesforordningen og
+                      databeskyttelsesloven.
+                    </p>
+                    <h3 class="question-title">
+                      Hvordan skal du forholde dig til en klage?
+                    </h3>
+                    <p><i>Vælg kun ét svar:</i></p>
+                    <input
+                      type="radio"
+                      id="klage1"
+                      name="klage"
+                      value="false"
+                    />
+                    <label for="klage1">
+                      Tager en dyb indånding og drik en kop kaffe. Det skal nok
+                      gå over af sig selv!</label
+                    ><br />
+                    <input type="radio" id="klage2" name="klage" value="true" />
+                    <label for="klage2">
+                      Vurdere, hvorvidt behandling af oplysninger sker inden for
+                      rammerne af databeskyttelsesreglerne</label
+                    ><br />
+                    <input
+                      type="radio"
+                      id="klage3"
+                      name="klage"
+                      value="false"
+                    />
+                    <label for="klage3">
+                      Print klagen ud og smid den direkte i makulatoren</label
+                    ><br />
+                    <input
+                      type="radio"
+                      id="klage4"
+                      name="klage"
+                      value="false"
+                    />
+                    <label for="klage4">
+                      Du tager klagen alvorligt og sender den straks til
+                      Datatilsynet da det ikke er dit ansvar</label
+                    ><br />
+                  </div>
+                </div>
+                <div class="row row-cols-2 form-row slide" id="slide-9">
+                  <div class="full-col">
+                    <h2>Resultat</h2>
+                    <div class="thumbsimg">
+                      <img
+                        id="thumbsUpImg"
+                        src="img/datatilsynet_thumbsup.svg"
+                        alt="Thumbs-up"
+                      />
+                      <img
+                        id="thumbsDownImg"
+                        src="img/datatilsynet_thumbsdown.svg"
+                        alt="Thumbs-down"
+                      />
+                    </div>
+                    <p id="totalAnswerCount">Hov! Der gik noget galt!</p>
+                  </div>
+                  <div class="col">
+                    <h3 class="question-title">
+                      Hvad er Datatilsynet primære opgaver?
+                    </h3>
+                    <p>
+                      Du har svaret:
+                      <span class="checkanswer">Du mangler at svare!</span>
+                    </p>
+                    <h3 class="question-title">
+                      Hvad står forkortelsen GDPR for?
+                    </h3>
+                    <p>
+                      Du har svaret:
+                      <span class="checkanswer">Du mangler at svare!</span>
+                    </p>
+                    <h3 class="question-title">
+                      Hvem bør den dataansvarlige i en virksomhed altid være?
+                    </h3>
+                    <p>
+                      Du har svaret:
+                      <span class="checkanswer">Du mangler at svare!</span>
+                    </p>
+                    <h3 class="question-title">
+                      Hvad er “Best practise” i indsamling af cookiesamtykke?
+                    </h3>
+                    <p>
+                      Du har svaret:
+                      <span class="checkanswer">Du mangler at svare!</span>
+                    </p>
+                  </div>
+                  <div class="col">
+                    <h3 class="question-title">
+                      Hvad er straffen ved alvorlige brud af
+                      databeskyttelsesreglerne?
+                    </h3>
+                    <p>
+                      Du har svaret:
+                      <span class="checkanswer">Du mangler at svare!</span>
+                    </p>
+                    <h3 class="question-title">
+                      Hvor hurtigt skal forbrugeroplysninger slettes?
+                    </h3>
+                    <p>
+                      Du har svaret:
+                      <span class="checkanswer">Du mangler at svare!</span>
+                    </p>
+                    <h3 class="question-title">
+                      Hvornår betragtes et billede som en personoplysning?
+                    </h3>
+                    <p>
+                      Du har svaret:
+                      <span class="checkanswer">Du mangler at svare!</span>
+                    </p>
+                    <h3 class="question-title">
+                      Hvordan skal du forholde dig til en klage?
+                    </h3>
+                    <p>
+                      Du har svaret:
+                      <span class="checkanswer">Du mangler at svare!</span>
+                    </p>
+                  </div>
+                </div>
+                <!--                         <div class="row form-row slide" id="slide-10">
                             <div class="col">
                                 <p>Det er den 21. marts 2022. Du er i byen sammen med dine venner. Hvad må du kalde for
                                     at kode uden at fornærme nogen?</p>
@@ -461,33 +606,278 @@
                                 <label for="javascript">Min krop sover!</label>
                             </div>
                         </div> -->
-                    </form>
-
-                </div>
-                <div class="all-buttons">
-                    <button class="btn btn-primary" id="btn-start" type="button" onclick="startQuiz()">Start
-                        quizzen</button>
-                    <button class="btn btn-primary" id="btn-tryagain" type="button" onclick="restartQuiz()">Tag quizzen
-                        igen</button>
-                    <div id="step-btn">
-                        <button class="btn btn-primary btn-inactive" id="btn-back" type="button"
-                            onclick="navigateBackward()">Forrige</button>
-                        <button class="btn btn-primary" id="btn-next" type="button"
-                            onclick="navigateForward()">Næste</button>
-                    </div>
-                </div>
+              </form>
             </div>
-        </section>
+            <div class="all-buttons">
+              <button
+                class="btn btn-primary"
+                id="btn-start"
+                type="button"
+                onclick="startQuiz()"
+              >
+                Start quizzen
+              </button>
+              <button
+                class="btn btn-primary"
+                id="btn-tryagain"
+                type="button"
+                onclick="restartQuiz()"
+              >
+                Tag quizzen igen
+              </button>
+              <div id="step-btn">
+                <button
+                  class="btn btn-primary btn-inactive"
+                  id="btn-back"
+                  type="button"
+                  onclick="navigateBackward()"
+                >
+                  Forrige
+                </button>
+                <button
+                  class="btn btn-primary"
+                  id="btn-next"
+                  type="button"
+                  onclick="navigateForward()"
+                >
+                  Næste
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Cookie Modal -->
+      <div id="cookie-popup" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+          <div class="modal-header">
+            <img class="img-brand-modal" src="img/dat-logo.png" alt="" />
+          </div>
+          <div class="modal-body">
+            <h2>Du bestemmer over dine data</h2>
+            <p>
+              På vores hjemmeside bruges cookies udelukkende af os, og kun til,
+              hvad vi mener er nødvendigt, for at få hjemmesiden til at fungere.
+            </p>
+            <a href="#">Om cookies</a>
+          </div>
+          <div class="modal-footer">
+            <button
+              class="btn btn-secondary"
+              type="button"
+              onclick="closeCookiePopup()"
+            >
+              Kun nødvendige
+            </button>
+            <button
+              class="btn btn-primary"
+              type="button"
+              onclick="closeCookiePopup()"
+            >
+              Accepter alle
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Report Modal -->
+      <div id="report-modal" popover class="modal">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button
+              popovertarget="report-modal"
+              popovertargetaction="hide"
+              class="close"
+            >
+              &times;
+            </button>
+            <h2>Dokumentation til vores projekt</h2>
+          </div>
+          <div class="modal-img img1">
+            <img src="img/datatilsynet_projektledelse.svg" alt="" />
+          </div>
+          <div class="modal-body body1">
+            <h2>Projektstyring</h2>
+            <h3>WBS</h3>
+            <p>
+              I starten af vores planlægningsfase lavede vi en WBS for at
+              nedbryde vores arbejdsopgaver til de arbejdspakker som vi skal
+              lave for at komme i mål med opgaven.
+            </p>
+            <a href="img/wbs.jpg" target="_blank">Se WBS her</a>
+            <h3>Gantt Chart</h3>
+            <p>
+              Vi overførte vores WBS til et Gantt Chart for at få bedre overblik
+              over alle elementer i projektet. Vi lavede det som en grafisk
+              tidsplan med start og slutdatoer for de enkelte opgaver.
+            </p>
+            <a href="img/gantt_chart.jpg" target="_blank">Se Gantt chart her</a>
+            <h3>Trello, Slack og Github</h3>
+            <p>
+              Vi oprettede et workspace i Trello som blev vores primære
+              "delingsplatform". Slack brugte vi som kommunikationsplatform til
+              at koordinere zoom-møder, generelle status beskeder og anden
+              kommunikation. Vi oprettede et Repositoy på
+              <a href="https://github.com/Julboben/datatilsynet">Github</a> som
+              vi fik koblet sammen med Visuel Studie. På den måde havde vi alle
+              adgang til vores arbejde i Visuel Studie og kunne følge med i
+              arbejdets udvikling.
+            </p>
+          </div>
+          <div class="modal-img img2">
+            <img src="img/datatilsynet_maalgruppe.svg" alt="" />
+          </div>
+          <div class="modal-body body2">
+            <h2>Målgruppe</h2>
+            <h3>
+              Vi har valgt at arbejde med virksomheder, herunder specifikt
+              webshops, i Danmark.
+            </h3>
+            <p>
+              I Danmark har vi 321.494 aktive virksomheder med 2.276.102
+              ansatte. Der er 45.507 aktive koncerner med 899.681 ansatte.1 En
+              tredjedel af de danske virksomheder har webshop2 Vores målgruppe
+              består derfor af 96.448 virksomheder med webshops i Danmark.
+            </p>
+            <h3>Hvor stor er vores målgruppe målt i antal medarbejdere?</h3>
+            <p>
+              Vores målgruppe er en person der arbejder som dataansvarlig eller
+              som databehandler i en virksomhed med webshop. Der vil være
+              minimum én dataansvarlig eller behandler pr. virksomhed og dvs. at
+              vores målgruppe målt i antal medarbejdere er det samme som antal
+              af aktive virksomheder med webshobs i Danmark, altså 96.448
+              medarbejdere.
+            </p>
+            <h3>
+              I hvilken afdeling i virksomheden skal vi finde vores målgruppe?
+            </h3>
+            <p>
+              Vores dataansvarlige eller databehandler kan sidde i forskellige
+              afdelinger af en virksomhed, afhængig af virksomhedens størrelse.
+              Den typiske afdeling vil være IT-afdelingen.
+            </p>
+            <h3>Konklusion</h3>
+            <p>
+              Vi skal ud at ramme minimum 96.500 medarbejdere med vores
+              spørgeskema og teste deres viden omkring Datatilsynet og GDPR. Vi
+              skal målrette vores fokus mod IT-afdelingerne rundt om i de danske
+              virksomheder med webshops.
+            </p>
+          </div>
+          <div class="modal-img img3">
+            <img src="img/datatilsynet_interessentanalyse.svg" alt="" />
+          </div>
+          <div class="modal-body body3">
+            <h2>Interessent Analyse</h2>
+            <h3>1. Europaparlementet</h3>
+            <p>
+              Datatilsynet startede i Europa, så ændringer som sker i
+              lovgivningen i Europaparlementet og andre eupæiske lande kan få
+              indflydelse på de danske lovgivninger og regler angående
+              datasikkerhed.
+            </p>
+            <h3>2. Databeskyttelsesloven</h3>
+            <p>
+              Databeskyttelsesloven er både aktuel og afgørende for, hvordan
+              persondata bliver behandlet. Det er derfor en central del af vores
+              fundament for vores quiz.
+            </p>
+            <h3>3. Vores virksomhed</h3>
+            <p>
+              Vores virksomhed har en ønsket handlemåde i forhold til projekter
+              - altså at løse den givne opgave.
+            </p>
+            <h3>4. Datatilsynet</h3>
+            <p>
+              Det er justitsministeren i den siddende regering som udpeger den
+              øverste chef i Datatilsynet, så en ændring i regerigen kan få
+              konsekvenser for Datatilsynet.
+            </p>
+            <h3>5. Forbrugeren</h3>
+            <p>
+              Forbrugeren har hverken nogen magt eller legitimitet, men er
+              naturligvis underlagt af datalovgivningen. Derfor har de en form
+              for aktive, og værd at lytte til.
+            </p>
+            <a href="img/interessent-analyse.svg" target="_blank"
+              >Se interessent analysen her</a
+            >
+          </div>
+          <div class="modal-img img4">
+            <img src="img/datatilsynet_risikoanalyse.svg" alt="" />
+          </div>
+          <div class="modal-body body4">
+            <h2>Risiko analyse</h2>
+            <h3>Risiko Matrix</h3>
+            <ol>
+              <li>IT-nedbrud</li>
+              <li>Indbrud/tyveri</li>
+              <li>Brand/vandskade</li>
+              <li>Usamarbejdsvillige medarbejder</li>
+              <li>Ny data-lovgivning</li>
+            </ol>
+            <h3>Risiko håndtering</h3>
+            <ol>
+              <li>Cloud- og lokal /ekstern-harddisk IT Backup</li>
+              <li>
+                Sørger for at have de bedste indbrudsforanstaltninger, aflåste
+                pengeskabe med back-up’s af vigtige dokumenter og evt.
+                IT-materialer, samt indbruds/tyveri forsikringer m.v.
+              </li>
+              <li>
+                Der er ikke så meget at gøre i tilfælde af brand og vandskade.
+                Vi har forsikringer på plads, og ellers sørger vi for at
+                brandbart materiale ikke kommer i nærheden af åben ild.
+              </li>
+              <li>
+                Kompetente medarbejdere der kan håndtere alle relevante
+                arbejdsopgaver, så vi kan dække andre medarbejderes opgaver
+                f.eks. ved sygdom eller usamarbejdsvillighed.
+              </li>
+              <li>
+                Ved ny lovgivning accepter vi evt. nye ændringer og forholder os
+                opdateret og retter til.
+              </li>
+            </ol>
+            <a
+              href="img/risikoformel-og-matrix01_outline-01.svg"
+              target="_blank"
+              >Se risiko analysen her</a
+            ><br />
+            <a
+              href="img/risikoformel-og-matrix01_outline-02.svg"
+              target="_blank"
+              >Se risiko status</a
+            >
+          </div>
+          <div class="modal-footer">
+            <small
+              ><i>
+                <ul>
+                  <li>1 (kilde: dst.dk, statistik fra 2019)</li>
+                  <li>
+                    2 Kilde:EUROSTAT (Hvor gode er danske virksomheder til
+                    e-handel? - DI Handel (danskindustri.dk)
+                  </li>
+                </ul>
+              </i></small
+            >
+          </div>
+        </div>
+      </div>
     </main>
     <footer>
-        <div class="container">
-            <p>Datatilsynet &copy; 2022</p>
-            <div class="reports">
-                <a id="report-btn">Dokumentation</a>
-            </div>
+      <div class="container">
+        <p>Datatilsynet &copy; 2022</p>
+        <div class="reports">
+          <button class="btn" id="report-btn" popovertarget="report-modal">
+            Dokumentation
+          </button>
         </div>
+      </div>
     </footer>
     <script src="script.js" type="text/javascript"></script>
-</body>
-
+  </body>
 </html>
