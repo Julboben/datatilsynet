@@ -110,6 +110,23 @@ function navigateBackward() {
   showActiveSlide(false);
 }
 
+function createStepBoxes() {
+  const stepBox = document.getElementById("dynamic-step-box");
+  const slideCount = slides.length - 2; // Exclude the first and last slides
+
+  for (let i = 0; i < slideCount; i++) {
+    const dot = document.createElement("span");
+    dot.classList.add("step-box__dot");
+    stepBox.appendChild(dot);
+
+    if (i < slideCount - 1) {
+      const hr = document.createElement("hr");
+      hr.classList.add("step");
+      stepBox.appendChild(hr);
+    }
+  }
+}
+
 for (let i = 0; i < slides.length - 1; i++) {
   const radioButtons = slides[i].querySelectorAll('input[type="radio"]');
   for (let j = 0; j < radioButtons.length; j++) {
@@ -192,7 +209,8 @@ function showActiveSlide(isMoveForward) {
     }
 
     // Only update dots on slide 1-8
-    if (activeSlideNumber - 1 < dots.length) {
+    if (activeSlideNumber > 0 && activeSlideNumber < slides.length - 1) {
+      const dots = document.getElementsByClassName("step-box__dot");
       dots[activeSlideNumber - 1].classList.toggle("dot-active");
     }
   } else {
@@ -255,3 +273,5 @@ function openNavBurger() {
     x.className = "topnav";
   }
 }
+
+window.addEventListener("load", createStepBoxes);
