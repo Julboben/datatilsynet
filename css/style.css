@@ -246,6 +246,13 @@ img.img-fluid {
   width: 100%;
 }
 
+.question-image {
+  min-height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .slide img {
   width: 100%;
 }
@@ -534,14 +541,24 @@ hr.step {
 /* Report Modal */
 /* The Modal (background) */
 #report-modal {
-  position: fixed;
-  z-index: 1;
-  left: 0;
-  top: 0;
-  height: 100%;
-  overflow: auto;
-  background-color: rgb(0, 0, 0);
-  background-color: rgba(0, 0, 0, 0.4);
+  width: 90%;
+  height: 90%;
+  padding: 40px;
+  border-radius: 10px;
+  border: none;
+
+  .close#close-report-modal {
+    position: sticky;
+    border: none;
+    background-color: transparent;
+    font-size: 24px;
+    color: #13293b;
+    cursor: pointer;
+
+    &:hover {
+      color: #c39c5b;
+    }
+  }
 
   .modal-content {
     display: grid;
@@ -555,14 +572,11 @@ hr.step {
       "footer footer footer";
     gap: 40px;
     background-color: #fefefe;
-    margin: 5% auto;
-    padding: 40px;
-    width: 80%;
-    border-radius: 10px;
+    margin-inline: auto;
+    overflow-y: auto;
   }
 
   .modal-header {
-    position: relative;
     text-align: center;
     grid-area: header;
   }
@@ -697,5 +711,62 @@ input {
   #totalAnswerCount {
     padding-left: 0px;
     text-align: center;
+  }
+}
+
+/* Add this to your style.css */
+
+#results-summary-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: flex-start;
+  gap: 20px; /* Add gap between columns */
+  width: 100%; /* Ensure it takes full width */
+
+  .col {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+}
+
+/* Style for correct/incorrect answers */
+.user-answer.correct {
+  color: #28a745; /* Green for correct */
+  font-weight: bold;
+}
+
+.user-answer.incorrect {
+  color: #dc3545; /* Red for incorrect */
+  font-weight: bold;
+  text-decoration: line-through;
+}
+
+.correctanswer {
+  color: #6c757d; /* Gray for the correct answer text */
+  font-size: 0.9em;
+  display: inline-block; /* Or block if needed */
+  margin-top: 5px;
+}
+
+@media screen and (max-width: 768px) {
+  /* Adjust breakpoint as needed */
+  #results-summary-container {
+    grid-template-columns: 1fr; /* Stack columns on smaller screens */
+  }
+}
+
+.slide-animate {
+  animation: slideFadeIn 0.5s ease;
+}
+
+@keyframes slideFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
