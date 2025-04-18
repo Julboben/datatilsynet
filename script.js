@@ -146,8 +146,19 @@ function hideAllSlides() {
 
 function updateDots() {
   const dots = dotsContainer.getElementsByClassName("step-box__dot");
-  for (let i = 0; i < dots.length; i++) {
-    dots[i].classList.toggle("dot-active", i < activeSlideNumber - 1);
+  Array.from(dots).forEach((dot, i) => {
+    const isActive = i < activeSlideNumber - 1; // Adjust logic if needed
+    dot.classList.toggle("dot-active", isActive);
+    dot.setAttribute("aria-current", isActive ? "step" : "false");
+    // Add or update aria-label
+    const stepNumber = i + 1;
+    const labelKey = isActive ? 'dotLabelActive' : 'dotLabelInactive';
+    const labelText = (langData[labelKey] || "Step {stepNumber}").replace("{stepNumber}", stepNumber);
+    dot.setAttribute("aria-label", labelText);
+  });
+  // Ensure the container has a label
+  if (dotsContainer && !dotsContainer.hasAttribute('aria-label') && langData.stepIndicatorLabel) {
+      dotsContainer.setAttribute('aria-label', langData.stepIndicatorLabel);
   }
 }
 
@@ -187,15 +198,19 @@ function storeSelectedAnswer(questionIndex) {
 function renderQuestionSlide(questionIndex) {
   if (!quizData || !langData || !quizData[questionIndex]) return;
 
+  const questionData = quizData[questionIndex]; // Define questionData here
   const slideId = `slide-${questionIndex + 1}`;
   let slide = document.getElementById(slideId);
 
   // Only create if it doesn't exist (essential for language change)
   if (!slide) {
-    const questionData = quizData[questionIndex];
     slide = document.createElement("div");
     slide.className = "row form-row question-slide";
     slide.id = slideId;
+
+    // Prepare fieldset/legend structure
+    const fieldsetId = `question-options-${questionIndex}`;
+    const legendId = `question-legend-${questionIndex}`;
 
     const optionsHtml = questionData.options
       .map(
@@ -219,13 +234,13 @@ function renderQuestionSlide(questionIndex) {
                 <img src="${questionData.image}" class="img-fluid question-image" alt="${questionData.title}" />
             </div>
             <div class="col">
-                <h2 class="question-topic">${questionData.title}</h2>
+                <h2 class="question-topic" tabindex="-1">${questionData.title}</h2>
                 <p class="question-description">${questionData.description}</p>
-                <h3 class="question-title">${questionData.question}</h3>
-                <p><i>${langData.quizOptionSelectHelper || 'Select only one answer:'}</i></p>
-                <div class="options-container">
+                <fieldset id="${fieldsetId}" class="options-container" role="radiogroup" aria-labelledby="${legendId}">
+                    <legend id="${legendId}" class="question-title">${questionData.question}</legend>
+                    <p><i>${langData.quizOptionSelectHelper || 'Select only one answer:'}</i></p>
                     ${optionsHtml}
-                </div>
+                </fieldset>
             </div>
         `;
     // Insert the new slide before the results slide
@@ -253,6 +268,12 @@ function renderQuestionSlide(questionIndex) {
 
 function renderResultsSlide() {
   if (!resultsSlide || !langData || !quizData || quizData.length === 0) return;
+
+  // Make heading focusable
+  const resultsHeading = resultsSlide.querySelector("h2");
+  if (resultsHeading) {
+      resultsHeading.setAttribute('tabindex', '-1');
+  }
 
   resultsSlide.classList.add("form-row-active");
   resultsSlide.style.display = "grid";
@@ -352,12 +373,14 @@ function showSlide() {
   hideAllSlides();
 
   let slideToShow = null;
+  let focusTarget = null;
 
   if (activeSlideNumber === 0) {
     if (introSlide) {
         introSlide.classList.add("form-row-active");
         introSlide.style.display = "grid";
         slideToShow = introSlide;
+        focusTarget = introSlide.querySelector('h2');
     }
     if(startBtn) startBtn.style.display = "block";
     if(stepBtns) stepBtns.style.display = "none";
@@ -370,16 +393,30 @@ function showSlide() {
     if(dotsContainer) dotsContainer.style.visibility = "visible";
     renderQuestionSlide(activeSlideNumber - 1);
     slideToShow = document.getElementById(`slide-${activeSlideNumber}`);
+    if (slideToShow) {
+      focusTarget = slideToShow.querySelector('.question-topic'); // Target the H2 in the question slide
+    }
   } else if (activeSlideNumber === quizData.length + 1) {
     if(dotsContainer) dotsContainer.style.visibility = "hidden";
     renderResultsSlide();
     slideToShow = resultsSlide;
+    if (slideToShow) {
+        focusTarget = slideToShow.querySelector('h2'); // Target the H2 in the results slide
+    }
   }
 
   if (slideToShow) {
     addSlideAnimation(slideToShow);
   }
+  // Move focus after the slide is shown and animation might have started
+  if (focusTarget) {
+      // Delay focus slightly to ensure element is visible and ready
+      setTimeout(() => {
+          focusTarget.focus();
+      }, 100); // Adjust delay if needed
+  }
   updateButtonStates();
+  updateDots(); // Update dots *after* activeSlideNumber is set
 }
 
 function updateButtonStates() {
@@ -406,8 +443,17 @@ function updateButtonStates() {
 }
 
 function updateLanguageButtons() {
-    if (langDaBtn) langDaBtn.classList.toggle('active', currentLanguage === 'da');
-    if (langEnBtn) langEnBtn.classList.toggle('active', currentLanguage === 'en');
+    const isDaActive = currentLanguage === 'da';
+    const isEnActive = currentLanguage === 'en';
+
+    if (langDaBtn) {
+        langDaBtn.classList.toggle('active', isDaActive);
+        langDaBtn.setAttribute('aria-current', isDaActive ? 'true' : 'false');
+    }
+    if (langEnBtn) {
+        langEnBtn.classList.toggle('active', isEnActive);
+        langEnBtn.setAttribute('aria-current', isEnActive ? 'true' : 'false');
+    }
 }
 
 // --- Event Handlers and Initialization ---
@@ -445,6 +491,18 @@ function navigateForward() {
 
   if (activeSlideNumber <= quizData.length) {
     activeSlideNumber++;
+
+    // Preload the image for the *next* slide after the one we are navigating to
+    const nextQuestionIndex = activeSlideNumber; // Index of the slide *after* the current target
+    if (nextQuestionIndex < quizData.length) { // Check if there is a slide after the next one
+        const nextImageUrl = quizData[nextQuestionIndex].image;
+        if (nextImageUrl) {
+            const img = new Image();
+            img.src = nextImageUrl;
+            // Optional: console.log(`Preloading image for slide ${nextQuestionIndex + 1}: ${nextImageUrl}`);
+        }
+    }
+
     showSlide();
   }
 }

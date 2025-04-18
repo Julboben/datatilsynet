@@ -51,7 +51,7 @@
             <h1 data-translate="quizTitle"></h1>
             <div class="step-box" id="dynamic-step-box"></div>
             <div class="wrapper">
-              <form>
+              <form role="region" aria-live="polite">
                 <!-- Intro Slide -->
                 <div class="row form-row form-row-active slide" id="slide-0">
                   <div class="col">
@@ -102,17 +102,9 @@
                   <div
                     id="results-summary-container"
                     class="full-col results-split-cols"
+                    aria-live="polite"
                   >
-                    <!-- Example structure added by JS:
-                  <div class="col">
-                            <div>Result item 1</div>
-                            <div>Result item 2</div>
-                  </div>
-                  <div class="col">
-                            <div>Result item 3</div>
-                            <div>Result item 4</div>
-                         </div>
-                         -->
+                    <!-- Results will be announced when populated -->
                   </div>
                 </div>
               </form>
@@ -134,6 +126,7 @@
                   type="button"
                   disabled
                   data-translate="btnBack"
+                  aria-controls="dynamic-step-box"
                 >
                 </button>
                 <button
@@ -142,6 +135,7 @@
                   type="button"
                   disabled
                   data-translate="btnNext"
+                  aria-controls="dynamic-step-box"
                 >
                 </button>
               </div>
@@ -195,11 +189,11 @@
     </footer>
 
     <!-- Report Modal (Now a Dialog) -->
-    <dialog id="report-modal" class="modal">
-      <button id="close-report-modal" class="close">✕</button>
+    <dialog id="report-modal" class="modal" aria-labelledby="report-modal-title">
+      <button id="close-report-modal" class="close" aria-label="Close report">✕</button>
       <div class="modal-content">
         <div class="modal-header">
-          <h2 data-translate="reportTitle"></h2>
+          <h2 id="report-modal-title" data-translate="reportTitle"></h2>
         </div>
 
         <!-- Projektstyring Section -->
